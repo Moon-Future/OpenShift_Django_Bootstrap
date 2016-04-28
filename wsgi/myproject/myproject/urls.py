@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+# from PhoneBook import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+
+	url(r'^$', 'PhoneBook.views.index', name='index'),    
 ]
