@@ -20,5 +20,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
-	url(r'^$', 'PhoneBook.views.index', name='index'),    
+	url(r'^$', 'PhoneBook.views.index', name='index'),
+	url(r'^test/$', 'PhoneBook.views.test', name='test'),
 ]
