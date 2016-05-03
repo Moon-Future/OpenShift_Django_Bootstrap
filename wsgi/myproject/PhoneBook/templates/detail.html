@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>通讯录</title>
+   <script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-2.0.0.min.js"></script>
+   <script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-ui"></script>
+   <link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+   <script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/bootstrap.min.js"></script>
+   <style type="text/css">
+      .img_top{
+         background-color: #90d7ec;
+         margin-left: -20px;
+         margin-right: -20px;
+         margin-top: -26px; 
+      }
+      .form-row {
+         overflow: hidden;
+         padding: 15px 25px 10px 25px;
+         /*background-color:#00FFFF;*/
+         border-bottom: 1px solid #eee;
+      }      
+   </style>
+</head>
+
+<!-- <form method='post'>
+	{% csrf_token %}
+	<input type="submit" value="删除联系人" onClick='delete_function()' />
+</form> -->
+
+<!-- <body style="background-image: url(/static/images/bgbody2.jpg);"> -->
+<body>
+<div class="container-fluid">
+   <div class="row-fluid">
+      <div class="span12">
+         <div class="img_top">
+            <h2 class="text-center">
+               <span class="marker"><br />永远的亲人<br />通讯录</span>
+            </h2>
+            <div style="margin-left: 20px;">
+               <ul class="nav nav-tabs">
+                  <li>
+                     <a href="../..">首页</a>
+                  </li>
+                  <li>
+                     <a href="../../add">添加联系人</a>
+                  </li>
+                  <li>
+                     <a href="../../delete">删除联系人</a>
+                  </li>
+                  <li>
+                     <a href="delete">登录</a>
+                  </li>          
+                  <li>
+                     <a href="delete">注册</a>
+                  </li>          
+               </ul>
+            </div>
+         </div>
+
+         <div class="form-row">
+            <div>
+               <table>
+                  <tr>
+                     <td>姓名</td>
+                     <td>{{ user.Name }}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div class="form-row">
+            <div>
+               <table>
+                  <tr>
+                     <td>电话</td>
+                     <td>{{ user.PhoneNum }}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div class="form-row">
+            <div>
+               <table>
+                  <tr>
+                     <td>地址</td>
+                     <td >{{ user.Address }}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div class="form-row">
+            <div>
+               <table>
+                  <tr>
+                     <td>其它</td>
+                     <td >{{ user.Other }}</td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+
+<!--          <p>姓名：{{ user.Name }}</p>
+         <p>电话：{{ user.PhoneNum }}</p>
+         <p>地址：{{ user.Address }}</p>
+         <p>其它：{{ user.Other }}</p> -->
+      </div>
+   </div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+   function delete_function()
+   {
+      if(!confirm('确认要删除此联系人？'))
+      {
+         window.event.returnValue=false;
+      }
+   }
+
+</script>
+
+</html>

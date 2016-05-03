@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>通讯录</title>
+	<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-2.0.0.min.js"></script>
+	<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-ui"></script>
+	<link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+	<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+    .addmessage{
+        width: 20em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px 6px;
+        margin-left:  50px;
+    }
+    .required label, label.required {
+        font-weight: bold;
+        color: #333;
+        margin-right: 50;
+    }
+
+    .form-row {
+        overflow: hidden;
+        padding: 15px 25px 10px 25px;
+        /*background-color:#00FFFF;*/
+        border-bottom: 1px solid #eee;
+    }
+
+    .vtextarea{
+        width: 610px;
+        height: 100px;
+        border-radius: 4px;
+        padding: 1px 6px;
+        margin-left:  50px;
+    }
+
+    .sub{
+        padding: 12px 14px;
+        margin: 20px 0 20px;
+        background: #228fbd;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        margin-left: 25px; 
+        font-weight: bold;
+        color: #cde6c7;
+    }
+
+	.errorlist{
+		list-style: none;
+		color: red;
+		margin-left: 85px;
+		font-weight: bold;
+		font-style: italic;
+	}
+
+	.img_top{
+		background-color: #90d7ec;
+		margin-left: -20px;
+		margin-right: -20px;
+		margin-top: -26px; 
+	}
+
+</style>
+
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="img_top">
+				<h2 class="text-center">
+					<span class="marker"><br />永远的亲人<br />通讯录</span>
+				</h2>
+				<div style="margin-left: 20px;">
+					<ul class="nav nav-tabs">
+						<li>
+							<a href="..">首页</a>
+						</li>
+						<li class="active">
+							<a href="#">添加联系人</a>
+						</li>
+						<li class="disabled">
+							<a href="../delete">删除联系人</a>
+						</li>
+						<li>
+							<a href="delete">登录</a>
+						</li>				
+						<li>
+							<a href="delete">注册</a>
+						</li>		
+					</ul>
+				</div>
+			</div>
+			<form  method="post">
+				{% csrf_token %}
+			    <div class="form-row">
+			    	<div>
+				    	<table>
+					    	<tr>
+					    		{{ addform.add_name.errors }}
+					        	<td><label class='required'>姓名</label></td>
+					        	<td>{{ addform.add_name }}</td>
+					        	<td style="font:italic bold 15px/20px arial,sans-serif;color:red">*必填</td>
+					        </tr>
+				        </table>
+			        </div>
+			    </div>
+			    <div class="form-row">
+			    	<div>
+				    	<table>
+					    	<tr>
+					    		{{ addform.add_phone.errors }}
+					        	<td><label class='required'>电话</label></td>
+					        	<td>{{ addform.add_phone }}</td>
+					        	<td style="font:italic bold 15px/20px arial,sans-serif;color:red">*必填</td>
+					        </tr>
+				        </table>
+			        </div>
+			    </div>
+			    <div class="form-row">
+			        <div>
+			        	<table>
+			        		<tr>
+			            		<td style="vertical-align:text-top;"><label class='required'>地址</label></td>
+			            		<td >{{ addform.add_address }}</td>
+			            	</tr>
+			            </table>
+			        </div>
+			    </div>
+			    <div class="form-row">
+			        <div>
+			        	<table>
+			        		<tr>
+			            		<td style="vertical-align:text-top;"><label class='required'>其它</label></td>
+			            		<td >{{ addform.add_other }}</td>
+			            	</tr>
+			            </table>
+			        </div>
+			    </div>
+			    <div>
+			    	<input type="button" value="Cancel" class="sub" onclick="go_back()" />
+			    	<input type="submit" name="Save and add another" value="Save and add another" class="sub" style="margin-left: 13px;" />
+			    	<input type="submit" name="Save" value="Save" class="sub" style="margin-left: 13px;" />
+			    </div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+
+<script type="text/javascript">
+	function go_back()
+	{
+		//history.go(-1); //返回上一页
+		window.location.href="../";
+	}
+</script>
+
+</html>
