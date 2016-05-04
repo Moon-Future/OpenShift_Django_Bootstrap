@@ -19,5 +19,5 @@ echo "Executing 'python $OPENSHIFT_REPO_DIR/wsgi/myproject/manage.py collectstat
 # GETTING-STARTED: change 'myproject' to your project name:
 python "$OPENSHIFT_REPO_DIR"wsgi/myproject/manage.py collectstatic --noinput
 
-source $OPENSHIFT_GEAR_DIR/virtenv/bin/activate
-export PYTHON_EGG_CACHE=$OPENSHIFT_GEAR_DIR/virtenv/lib/python-3.3
+# source $OPENSHIFT_GEAR_DIR/virtenv/bin/activate
+# export PYTHON_EGG_CACHE=$OPENSHIFT_GEAR_DIR/virtenv/lib/python-3.3
