@@ -40,6 +40,7 @@ ALLOWED_HOSTS = [
     #'www.example.com', # Second DNS alias (set up in the app)
     'www.haomyun.com',
     'haomyun.com',
+    '*',
 ]
 
 
