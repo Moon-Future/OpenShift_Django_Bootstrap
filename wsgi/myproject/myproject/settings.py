@@ -125,7 +125,9 @@ else:
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+
+TIME_ZONE = 'UTC+08:00'
 
 USE_I18N = True
 
