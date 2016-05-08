@@ -2,11 +2,9 @@
 <html>
 <head>
 	<title>Contacts</title>
-	<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-2.0.0.min.js"></script>
-	<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-ui"></script>
-	<link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
-	<script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/bootstrap.min.js"></script>
-
+<!-- 	<link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen"> -->
+	<link href="/static/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+	<link rel="shortcut icon" href="/static/images/haomyun.ico" />
 <style type="text/css">
     .addmessage{
         width: 20em;
@@ -71,7 +69,7 @@
 		<div class="span12">
 			<div class="img_top">
 				<h2 class="text-center">
-					<span class="marker"><br />永远的亲人<br />通讯录</span>
+					<span class="marker"><br />非一般的逗比<br />通讯录</span>
 				</h2>
 				<div style="margin-left: 20px;">
 					<ul class="nav nav-tabs">
@@ -142,7 +140,7 @@
 			    <div>
 			    	<input type="button" value="Cancel" class="sub" onclick="go_back()" />
 			    	<input type="submit" name="Save and add another" value="Save and add another" class="sub" style="margin-left: 13px;" />
-			    	<input type="submit" name="Save" value="Save" class="sub" style="margin-left: 13px;" />
+			    	<input type="submit" name="Save" value="Save" class="sub" style="margin-left: 13px;" onclick="confirm()" />
 			    </div>
 			</form>
 		</div>
@@ -154,7 +152,11 @@
 	function go_back()
 	{
 		//history.go(-1); //返回上一页
-		window.location.href="../";
+		window.location.href="../"
+	}
+	function confirm()
+	{
+		alert('添加成功！');
 	}
 </script>
 

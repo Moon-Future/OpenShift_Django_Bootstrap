@@ -1,50 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Contacts</title>
-   <script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-2.0.0.min.js"></script>
-   <script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/jquery-ui"></script>
-   <link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
-   <script type="text/javascript" src="http://www.francescomalagrino.com/BootstrapPageGenerator/3/js/bootstrap.min.js"></script>
-   <style type="text/css">
-      .img_top{
-         background-color: #90d7ec;
-         margin-left: -20px;
-         margin-right: -20px;
-         margin-top: -26px; 
-      }
-      .form-row {
-         overflow: hidden;
-         padding: 15px 25px 10px 25px;
-         /*background-color:#00FFFF;*/
-         border-bottom: 1px solid #eee;
-      }      
-   </style>
+   <title>Contacts</title>
+<!--  <link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen"> -->
+   <link href="/static/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+   <link rel="shortcut icon" href="/static/images/haomyun.ico" />
+<style type="text/css">
+    .addmessage{
+        width: 20em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px 6px;
+        margin-left:  50px;
+    }
+    .required label, label.required {
+        font-weight: bold;
+        color: #333;
+        margin-right: 50;
+    }
+
+    .form-row {
+        overflow: hidden;
+        padding: 15px 25px 10px 25px;
+        /*background-color:#00FFFF;*/
+        border-bottom: 1px solid #eee;
+    }
+
+    .vtextarea{
+        width: 610px;
+        height: 100px;
+        border-radius: 4px;
+        padding: 1px 6px;
+        margin-left:  50px;
+    }
+
+    .sub{
+        padding: 12px 14px;
+        margin: 20px 0 20px;
+        background: #228fbd;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        margin-left: 25px; 
+        font-weight: bold;
+        color: #cde6c7;
+    }
+
+   .errorlist{
+      list-style: none;
+      color: red;
+      margin-left: 85px;
+      font-weight: bold;
+      font-style: italic;
+   }
+
+   .img_top{
+      background-color: #90d7ec;
+      margin-left: -20px;
+      margin-right: -20px;
+      margin-top: -26px; 
+   }
+
+</style>
+
 </head>
-
-<!-- <form method='post'>
-	{% csrf_token %}
-	<input type="submit" value="删除联系人" onClick='delete_function()' />
-</form> -->
-
-<!-- <body style="background-image: url(/static/images/bgbody2.jpg);"> -->
 <body>
 <div class="container-fluid">
    <div class="row-fluid">
       <div class="span12">
          <div class="img_top">
             <h2 class="text-center">
-               <span class="marker"><br />永远的亲人<br />通讯录</span>
+               <span class="marker"><br />非一般的逗比<br />通讯录</span>
             </h2>
             <div style="margin-left: 20px;">
                <ul class="nav nav-tabs">
                   <li>
-                     <a href="../..">首页</a>
+                     <a href="../../">首页</a>
                   </li>
                   <li>
                      <a href="../../add">添加联系人</a>
                   </li>
-                  <li>
+                  <li class="disabled">
                      <a href="../../delete">删除联系人</a>
                   </li>
                   <li>
@@ -52,66 +87,74 @@
                   </li>          
                   <li>
                      <a href="delete">注册</a>
-                  </li>          
+                  </li>    
                </ul>
             </div>
          </div>
-
-         <div class="form-row">
-            <div>
-               <table>
-                  <tr>
-                     <td>姓名</td>
-                     <td>{{ user.Name }}</td>
-                  </tr>
-               </table>
-            </div>
-         </div>
-         <div class="form-row">
-            <div>
-               <table>
-                  <tr>
-                     <td>电话</td>
-                     <td>{{ user.PhoneNum }}</td>
-                  </tr>
-               </table>
-            </div>
-         </div>
-         <div class="form-row">
-            <div>
-               <table>
-                  <tr>
-                     <td>地址</td>
-                     <td >{{ user.Address }}</td>
-                  </tr>
-               </table>
-            </div>
-         </div>
-         <div class="form-row">
-            <div>
-               <table>
-                  <tr>
-                     <td>其它</td>
-                     <td >{{ user.Other }}</td>
-                  </tr>
-               </table>
-            </div>
-         </div>
+         <form  method="post">
+            {% csrf_token %}
+             <div class="form-row">
+               <div>
+                  <table>
+                     <tr>
+                        {{ updateform.update_name.errors }}
+                        <td><label class='required'>姓名</label></td>
+                        <td>{{ updateform.update_name }}</td>
+                       </tr>
+                    </table>
+                 </div>
+             </div>
+             <div class="form-row">
+               <div>
+                  <table>
+                     <tr>
+                        {{ updateform.update_phone.errors }}
+                        <td><label class='required'>电话</label></td>
+                        <td>{{ updateform.update_phone }}</td>
+                       </tr>
+                    </table>
+                 </div>
+             </div>
+             <div class="form-row">
+                 <div>
+                  <table>
+                     <tr>
+                           <td style="vertical-align:text-top;"><label class='required'>地址</label></td>
+                           <td>{{ updateform.update_address }}</td>
+                        </tr>
+                     </table>
+                 </div>
+             </div>
+             <div class="form-row">
+                 <div>
+                  <table>
+                     <tr>
+                           <td style="vertical-align:text-top;"><label class='required'>其它</label></td>
+                           <td>{{ updateform.update_other }}</td>
+                        </tr>
+                     </table>
+                 </div>
+             </div>
+             <div>
+               <input type="button" value="Back" class="sub" onclick="go_back()" />
+               <input type="submit" name="Update" value="Update" class="sub" style="margin-left: 13px;" onclick="confirm()" />
+             </div>
+         </form>
       </div>
    </div>
 </div>
-
 </body>
 
 <script type="text/javascript">
-   function delete_function()
+   function go_back()
    {
-      if(!confirm('确认要删除此联系人？'))
-      {
-         window.event.returnValue=false;
-      }
+      //history.go(-1); //返回上一页
+      window.location.href="../../"
    }
-
+   function confirm()
+   {
+      alert('更新成功！');
+   }
 </script>
 
 </html>

@@ -36,6 +36,47 @@ class AddForm(forms.Form):
 			widget=forms.Textarea(
 					attrs={
 						'class':'vtextarea',
+						# 'placeholder':r'其它',
+					}
+				),
+		)
+
+class UpdateForm(forms.Form):
+	update_name=forms.CharField(
+			required=True,
+			error_messages={'required':'请输入姓名'},
+			widget=forms.TextInput(
+					attrs={
+						'class':'addmessage',
+						'placeholder':r'姓名',
+					}
+				),
+		)
+	update_phone=forms.CharField(
+			required=True,
+			error_messages={'required':'请输入电话'},
+			widget=forms.TextInput(
+					attrs={
+						'class':'addmessage',
+						'placeholder':r'电话',
+					}
+				),
+		)
+	update_address=forms.CharField(
+			required=False,
+			widget=forms.Textarea(
+					attrs={
+						'class':'vtextarea',
+						'placeholder':r'地址',
+						# 'initial':r'foobar',
+					},
+				),
+		)
+	update_other=forms.CharField(
+			required=False,
+			widget=forms.Textarea(
+					attrs={
+						'class':'vtextarea',
 						'placeholder':r'其它',
 					}
 				),
