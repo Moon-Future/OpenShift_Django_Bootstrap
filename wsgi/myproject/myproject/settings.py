@@ -127,7 +127,7 @@ LANGUAGE_CODE = 'en-us'
 
 # TIME_ZONE = 'UTC'
 
-TIME_ZONE = 'UTC+08:00'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
