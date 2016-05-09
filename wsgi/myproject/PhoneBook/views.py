@@ -8,18 +8,6 @@ from django.template.context import RequestContext
 
 
 # Create your views here.
-
-def index(request):
-	return HttpResponse("Hello World!")
-
-def test(request):
-	return HttpResponse("陈亮 ChenLiang")
-
-# def index(request):  #主页
-# 	content='欢迎光临号码不离，We Are All Here!'
-# 	#return HttpResponse('欢迎光临号码不离，We Are All Here!')
-# 	return render(request,'index.html',{'content':content})
-
 def phone(request):  #通讯录首页
 	messageuser=MessageUser.objects.all()
 	return render(request,'phone.html',{'messageuser':messageuser})
@@ -38,11 +26,9 @@ def add(request):    #添加联系人
 			Other=addform.cleaned_data['add_other']
 			# Name=addform.cleaned_data['add_name']
 			new_user=MessageUser.objects.get_or_create(Name=Name,PhoneNum=PhoneNum,Address=Address,Other=Other)
-			# if request.POST.get("Save"):
-			# 	return HttpResponse('添加成功！')
-			# else:
-			# 	return HttpResponseRedirect('.')
-			if request.POST.get("Save and add another"):
+			if request.POST.get("Save"):
+				return HttpResponseRedirect('../')
+			else:
 				return HttpResponseRedirect('.')
 
 	else:

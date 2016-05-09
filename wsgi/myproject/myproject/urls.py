@@ -18,12 +18,8 @@ from django.contrib import admin
 # from PhoneBook.views import index as views_index
 
 urlpatterns = [
-	# url(r'^index/$', views_index,name='ZhuYe'),
-	#url(r'^index/', 'PhoneBook.views.index',name='ZhuYe'),
-    url(r'^admin/', admin.site.urls),
 
-	# url(r'^$', 'PhoneBook.views.index', name='index'),
-	# url(r'^test/$', 'PhoneBook.views.test', name='test'),
+    url(r'^admin/', admin.site.urls),
 
     url(r'^$', 'PhoneBook.views.phone',name='phonenum'),
     url(r'^updata/$', 'PhoneBook.views.updata',name='updata'),
