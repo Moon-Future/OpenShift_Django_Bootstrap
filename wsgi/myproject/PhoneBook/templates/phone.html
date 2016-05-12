@@ -95,7 +95,7 @@
 									{{ each.Address }}
 								</td>
 								<td>
-									{{ each.UpdateTime }}
+									{{ each.UpdateTime|date:"Y-m-d H:i:s" }}
 								</td>
 							</tr>
 						{% endfor %}
