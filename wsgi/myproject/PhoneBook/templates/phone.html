@@ -4,6 +4,7 @@
 	<title>Contacts</title>
 	<!-- <link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen"> -->
 	<link href="/static/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+	<script type="text/javascript" src="/static/js/jquery-1.8.0.js"></script>
 	<link rel="shortcut icon" href="/static/images/haomyun.ico" />
 	<style type="text/css">
 		.img_top{
@@ -14,16 +15,6 @@
 		}
 	</style>
 
-	<script>
-	var _hmt = _hmt || [];
-	(function() 
-	{
-		var hm = document.createElement("script");
-		hm.src = "//hm.baidu.com/hm.js?4cb23102858baa64d68ddf7ee6a00f8c";
-		var s = document.getElementsByTagName("script")[0]; 
-		s.parentNode.insertBefore(hm, s);
-	})();
-	</script>
 
 </head>
 
@@ -48,10 +39,10 @@
 							<a href="delete">删除联系人</a>
 						</li>
 						<li>
-							<a href="delete">登录</a>
+							<a href="#">登录</a>
 						</li>				
 						<li>
-							<a href="delete">注册</a>
+							<a href="#">注册</a>
 						</li>				
 					</ul>
 				</div>
@@ -60,17 +51,18 @@
 				<form class="form-search" method="GET">
 					<input class="input-medium search-query" type="text" /> <button type="submit" class="btn">查找</button>
 				</form> 
-				<!-- <button class="btn btn-link" type="button"><a href="add">添加联系人</a></button> -->
 				<table class="table table-hover table-striped">
 					<thead>
 						<tr>
-							<th>
+							<th width="10%">
 								姓名
 							</th>
-							<th>
-								电话
+							<th width="25%">
+								<span style="margin-left: 90px;">
+									电话
+								</span>
 							</th>
-							<th>
+							<th width="40%">
 								地址
 							</th>
 							<th>
@@ -87,9 +79,48 @@
 									</a>
 								</td>
 								<td>
-									<a href="tel:{{ each.PhoneNum }}">
-									{{ each.PhoneNum }}
-									</a>
+									<select id="select_{{ each.id }}" style="width: 80px;margin: -5px 2px -5px">
+										{% if Label|get:each.id|length_is:"1" %}  <!--若电话标签个数为1-->
+											<option value="{{ Label|get:each.id|first }}_{{ each.id }}">
+												{{ Label|get:each.id|first }}     <!--第一个电话标签-->
+											</option>
+										{% else %}  <!--有多个电话-->
+											<option value="{{ Label|get:each.id|first }}_{{ each.id }}">
+												{{ Label|get:each.id|first }} <!--先得第一个电话-->
+											</option>
+											{% for label in Label|get:each.id|slice:"1:" %}
+												<option value="{{ label }}_{{ each.id }}">
+													{{ label }}    <!--再得后面几个电话-->
+												</option>
+											{% endfor %}
+										{% endif %}
+									</select>
+
+									{% if Label|get:each.id|length_is:"1" %} <!--若电话标签个数为1-->
+										{% for label in Label|get:each.id %} 
+											<a href="tel:{{ PhoneNum|get:each.id|get:label }}">
+												<span id="{{ label }}_{{ each.id }}">
+													{{ PhoneNum|get:each.id|get:label }}
+												</span>
+											</a>
+										{% endfor %}
+									{% else %}
+										{% for label in Label|get:each.id|slice:":1" %}
+											<a href="tel:{{ PhoneNum|get:each.id|get:label }}">
+												<span id="{{ label }}_{{ each.id }}">
+													{{ PhoneNum|get:each.id|get:label }}
+												</span>
+											</a>
+										{% endfor %}
+										{% for label in Label|get:each.id|slice:"1:" %}
+											<a href="tel:{{ PhoneNum|get:each.id|get:label }}">
+												<span id="{{ label }}_{{ each.id }}" style="display: none">
+													{{ PhoneNum|get:each.id|get:label }}
+												</span>
+											</a>
+										{% endfor %}
+									{% endif %}
+									
 								</td>
 								<td>
 									{{ each.Address }}
@@ -106,4 +137,29 @@
 	</div>
 </div>
 </body>
+
+<script type="text/javascript">
+
+$(document).ready(function()
+{
+	{% for each in messageuser %}
+		$("#select_{{ each.id }}").change(function()
+		{
+			var select_value=$("#select_{{ each.id }}").val();
+			{% for label in Label|get:each.id %}
+				if("{{ label }}_{{ each.id }}"==select_value)
+				{
+					$("span#{{ label }}_{{ each.id }}").show();
+				}
+				else
+				{
+					$("span#{{ label }}_{{ each.id }}").hide();
+				}
+			{% endfor %}
+		});
+	{% endfor %}
+});
+	
+</script>
+
 </html>

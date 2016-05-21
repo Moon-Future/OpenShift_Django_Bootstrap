@@ -3,10 +3,19 @@
 <head>
 	<title>Contacts</title>
 	<!-- <link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen"> -->
-	<!-- <link href="/static/css/bootstrap-combined.min.css" rel="stylesheet" media="screen"> -->
-	<!-- <link rel="shortcut icon" href="/static/images/haomyun.ico" /> -->
-<style type="text/css">
-    .addmessage{
+	<link href="/static/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+	<link rel="shortcut icon" href="/static/images/haomyun.ico" />
+	<script src="/static/js/jquery-1.8.0.js"></script>
+<style type="text/css">	
+    .addmessage_phone{
+        width: 20em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px 6px;
+        /*margin-left:  50px;*/
+        margin:8px 0px 0px 0px;
+    }
+    .addmessage_name{
         width: 20em;
         border: 1px solid #ccc;
         border-radius: 4px;
@@ -16,7 +25,7 @@
     .required label, label.required {
         font-weight: bold;
         color: #333;
-        margin-right: 50;
+        /*margin-right: 0px;*/
     }
 
     .form-row {
@@ -36,7 +45,7 @@
 
     .sub{
         padding: 12px 14px;
-        margin: -10px 0 20px;
+        margin: 20px 0 20px;
         background: #228fbd;
         border: 1px solid #eee;
         border-radius: 4px;
@@ -63,7 +72,7 @@
 </style>
 
 </head>
-<body>
+<body onkeydown="forbidBackSpace();">
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span12">
@@ -83,10 +92,10 @@
 							<a href="../delete">删除联系人</a>
 						</li>
 						<li>
-							<a href="delete">登录</a>
+							<a href="#">登录</a>
 						</li>				
 						<li>
-							<a href="delete">注册</a>
+							<a href="#">注册</a>
 						</li>		
 					</ul>
 				</div>
@@ -107,15 +116,38 @@
 			    </div>
 			    <div class="form-row">
 			    	<div>
-				    	<table>
+				    	<table id="phone">
 					    	<tr>
 					    		{{ addform.add_phone.errors }}
-					        	<td><label class='required'>电话</label></td>
-					        	<td>{{ addform.add_phone }}</td>
-					        	<td style="font:italic bold 15px/20px arial,sans-serif;color:red">*必填</td>
+						        <td>
+						        	<label class='required'>
+						        		电话
+						        	</label>
+						        </td>
+
+					        	<td>
+					        		<span style="margin: 0px 0px 0px 50px">
+					        			<input type="image" src="/static/images/add.png" class="addRow" style="outline: 0" />
+					        		</span>
+					        		<select id="0" name="label" style="width: 95px;margin: -5px 2px -5px" onchange="changeFunc();">
+										<option value="手机">手机</option>
+										<option value="工作">工作</option>
+										<option value="自定义">自定义</option>
+										<option value="修改自定义" style="color:#7fb80e;font-weight: bold">修改自定义</option>
+									</select>
+									<input class="addmessage_phone" id="addoption0" style="margin: 0 0 0 -100px;width: 60px;height: 16px;display:none;border-style:none;outline:none;
+									 " value="自定义"></input>
+				        			<span style="margin:0 0 0 20px;">
+										{{ addform.add_phone }}
+									</span>
+					        	</td>
+					        	<td style="font:italic bold 15px/20px arial,sans-serif;color:red;">
+					        		*必填
+					        	</td>
 					        </tr>
 				        </table>
 			        </div>
+			        <div id="addTr"></div>
 			    </div>
 			    <div class="form-row">
 			        <div>
@@ -158,6 +190,72 @@
 	{
 		alert('添加成功！');
 	}
+
+	// function row()
+	// {
+	// 	var tab=document.getElementById('phone');
+	// 	var rows=tab.rows.length;
+	// 	alert(rows);
+	// }
+
+	function delRow(obj) //删除行
+	{
+		var Row=obj.parentNode;
+		while(Row.tagName.toLowerCase()!="tr")
+		{
+			Row=Row.parentNode;
+		}
+		Row.parentNode.removeChild(Row);//删除行
+	}
+
+	//添加行
+	jQuery(function(){
+		var counter = 0;
+		jQuery('input.addRow').click(function(event){
+			event.preventDefault();
+			counter++;
+			var newRow = jQuery('<tr id="tr'+counter+'" ><td><label class="required"></label></td><td><span style="margin: 0px 0px 0px 50px"><input type="image" src="/static/images/remove.png" style="outline: 0" class="delbtn" onclick="delRow(this)" /> </span> <select id='+counter+' name="label" style="width: 95px;margin: -5px 2px -5px" onchange="changeFunc();"><option>手机</option><option>工作</option><option value="自定义">自定义</option><option value="修改自定义" style="color:#7fb80e;font-weight: bold">修改自定义</option></select> <input class="addmessage_phone" id="addoption'+counter+'" style="margin: 0 0 0 -100px;width: 60px;height: 16px;display:none;border-style:none;outline: none;" value="自定义"></input><span style="margin:0 0 0 20px;"> {{ addform.add_phone }}</span></td><td style="font:italic bold 15px/20px arial,sans-serif;color:red">*必填</td></tr>');
+			jQuery('table#phone').append(newRow);
+		});
+});
+
+	function changeFunc()
+	{
+		var i=0;
+		var ids_myselect=[];
+		var id_myselect;
+		$("select").each(function(){
+			ids_myselect.push($(this).attr("id"))  //查找所有select的id
+		});
+		$.each(ids_myselect,function(key,value){   //遍历id
+			if($("#"+value).is(":focus")==true)    //判断是否聚焦在id为value的select
+			{
+				id_myselect=value;
+				i=value;
+			}
+		});
+		var id_addoption="addoption"+i;
+		var selectBox=document.getElementById(id_myselect);
+		if(selectBox.selectedIndex==3)
+		{
+			$("#"+id_addoption).show();
+			$("#"+id_addoption).focus();
+		}
+		else
+		{
+			$("#"+id_addoption).hide();
+		}
+		$("#"+id_addoption).blur(function(){
+			var value=$("#"+id_addoption).val();
+			var obj=document.getElementById(id_myselect);
+			var opt=obj.options[2];
+			opt.value=value;
+			opt.text=value;
+			$("#"+id_addoption).hide();
+			$("#"+id_myselect).val(value);
+		});
+	}
+
 </script>
 
 </html>

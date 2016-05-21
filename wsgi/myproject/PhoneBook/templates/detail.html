@@ -1,160 +1,263 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Contacts</title>
-   <link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
-   <!-- <link href="/static/css/bootstrap-combined.min.css" rel="stylesheet" media="screen"> -->
-   <!-- <link rel="shortcut icon" href="/static/images/haomyun.ico" /> -->
+	<title>Contacts</title>
+	<!-- <link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen"> -->
+	<link href="/static/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+	<link rel="shortcut icon" href="/static/images/haomyun.ico" />
+	<script src="/static/js/jquery-1.8.0.js"></script>
 <style type="text/css">
-    .addmessage{
-        width: 20em;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 5px 6px;
-        margin-left:  50px;
-    }
-    .required label, label.required {
-        font-weight: bold;
-        color: #333;
-        margin-right: 50;
-    }
+	.addmessage_phone{
+			width: 20em;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			padding: 5px 6px;
+			/*margin-left:  50px;*/
+			margin:8px 0px 0px 0px;
+	}	
+	.addmessage_name{
+			width: 20em;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			padding: 5px 6px;
+			margin-left:  50px;
+	}
+	.required label, label.required {
+			font-weight: bold;
+			color: #333;
+			margin-right: 50;
+	}
 
-    .form-row {
-        overflow: hidden;
-        padding: 15px 25px 10px 25px;
-        /*background-color:#00FFFF;*/
-        border-bottom: 1px solid #eee;
-    }
+	.form-row {
+			overflow: hidden;
+			padding: 15px 25px 10px 25px;
+			/*background-color:#00FFFF;*/
+			border-bottom: 1px solid #eee;
+	}
 
-    .vtextarea{
-        width: 610px;
-        height: 100px;
-        border-radius: 4px;
-        padding: 1px 6px;
-        margin-left:  50px;
-    }
+	.vtextarea{
+			width: 610px;
+			height: 100px;
+			border-radius: 4px;
+			padding: 1px 6px;
+			margin-left:  50px;
+	}
 
-    .sub{
-        padding: 12px 14px;
-        margin: 20px 0 20px;
-        background: #228fbd;
-        border: 1px solid #eee;
-        border-radius: 4px;
-        margin-left: 25px; 
-        font-weight: bold;
-        color: #cde6c7;
-    }
+	.sub{
+			padding: 12px 14px;
+			margin: 20px 0 20px;
+			background: #228fbd;
+			border: 1px solid #eee;
+			border-radius: 4px;
+			margin-left: 25px; 
+			font-weight: bold;
+			color: #cde6c7;
+	}
 
-   .errorlist{
-      list-style: none;
-      color: red;
-      margin-left: 85px;
-      font-weight: bold;
-      font-style: italic;
-   }
+	.errorlist{
+			list-style: none;
+			color: red;
+			margin-left: 85px;
+			font-weight: bold;
+			font-style: italic;
+	 }
 
-   .img_top{
-      background-color: #90d7ec;
-      margin-left: -20px;
-      margin-right: -20px;
-      margin-top: -26px; 
-   }
+	.img_top{
+			background-color: #90d7ec;
+			margin-left: -20px;
+			margin-right: -20px;
+			margin-top: -26px; 
+	}
 
 </style>
 
 </head>
 <body>
 <div class="container-fluid">
-   <div class="row-fluid">
-      <div class="span12">
-         <div class="img_top">
-            <h2 class="text-center">
-               <span class="marker"><br />非一般的逗比<br />通讯录</span>
-            </h2>
-            <div style="margin-left: 20px;">
-               <ul class="nav nav-tabs">
-                  <li>
-                     <a href="../../">首页</a>
-                  </li>
-                  <li>
-                     <a href="../../add">添加联系人</a>
-                  </li>
-                  <li class="disabled">
-                     <a href="../../delete">删除联系人</a>
-                  </li>
-                  <li>
-                     <a href="delete">登录</a>
-                  </li>          
-                  <li>
-                     <a href="delete">注册</a>
-                  </li>    
-               </ul>
-            </div>
-         </div>
-         <form  method="post">
-            {% csrf_token %}
-             <div class="form-row">
-               <div>
-                  <table>
-                     <tr>
-                        {{ updateform.update_name.errors }}
-                        <td><label class='required'>姓名</label></td>
-                        <td>{{ updateform.update_name }}</td>
-                       </tr>
-                    </table>
-                 </div>
-             </div>
-             <div class="form-row">
-               <div>
-                  <table>
-                     <tr>
-                        {{ updateform.update_phone.errors }}
-                        <td><label class='required'>电话</label></td>
-                        <td>{{ updateform.update_phone }}</td>
-                       </tr>
-                    </table>
-                 </div>
-             </div>
-             <div class="form-row">
-                 <div>
-                  <table>
-                     <tr>
-                           <td style="vertical-align:text-top;"><label class='required'>地址</label></td>
-                           <td>{{ updateform.update_address }}</td>
-                        </tr>
-                     </table>
-                 </div>
-             </div>
-             <div class="form-row">
-                 <div>
-                  <table>
-                     <tr>
-                           <td style="vertical-align:text-top;"><label class='required'>其它</label></td>
-                           <td>{{ updateform.update_other }}</td>
-                        </tr>
-                     </table>
-                 </div>
-             </div>
-             <div>
-               <input type="button" value="Back" class="sub" onclick="go_back()" />
-               <input type="submit" name="Update" value="Update" class="sub" style="margin-left: 13px;" onclick="confirm()" />
-             </div>
-         </form>
-      </div>
-   </div>
+	<div class="row-fluid">
+		<div class="span12">
+			 <div class="img_top">
+					<h2 class="text-center">
+						 <span class="marker"><br />非一般的逗比<br />通讯录</span>
+					</h2>
+					<div style="margin-left: 20px;">
+						 <ul class="nav nav-tabs">
+								<li>
+									<a href="../../">首页</a>
+								</li>
+								<li>
+									<a href="../../add">添加联系人</a>
+								</li>
+								<li class="disabled">
+									<a href="../../delete">删除联系人</a>
+								</li>
+								<li>
+									<a href="#">登录</a>
+								</li>          
+								<li>
+									<a href="#">注册</a>
+								</li>    
+						 </ul>
+					</div>
+			</div>
+			<form  method="post">
+				{% csrf_token %}
+				<div class="form-row">
+					<div>
+						<table>
+							<tr>
+								{{ updateform.update_name.errors }}
+								<td><label class='required'>姓名</label></td>
+								<td>{{ updateform.update_name }}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="form-row">
+					<div>
+						<table id="phone">
+							<tr>
+								{{ updateform.update_phone.errors }}
+								<td><label class='required'>电话</label></td>
+								<td>
+									<span style="margin: 0px 0px 0px 50px">
+										<input type="image" src="/static/images/add.png" class="addRow" style="outline: 0" />
+									</span>
+									<select id="0" name="label" style="width: 95px;margin: -5px 2px -5px" onchange="changeFunc();">
+										<option value="{{ Label.0 }}">{{ Label.0 }}</option>
+										<option value="修改" style="color:#7fb80e;font-weight: bold">修改</option>
+									</select>
+									<input class="addmessage_phone" id="addoption0" style="margin: 0 0 0 -100px;width: 60px;height: 16px;display:none;border-style:none;outline:none;
+									 " value="{{ Label.0 }}"></input>
+									<span style="margin:0 0 0 20px;">
+										<input class="addmessage_phone" id="id_update_phone0" name="update_phone" placeholder="电话" type="text" value="{{ PhoneNum.0 }}" />
+									</span>
+								</td>
+							</tr>
+							{% for i in Length %}
+								<tr>
+									{{ updateform.update_phone.errors }}
+									<td><label class='required'></label></td>
+									<td>
+										<span style="margin: 0px 0px 0px 50px">
+											<input type="image" src="/static/images/remove.png" style="outline: 0" onclick="delRow(this)" />
+										</span>
+										<select id="{{ i }}" name="label" style="width: 95px;margin: -5px 2px -5px" onchange="changeFunc();">
+											<option value="{{ Label|get:i }}">{{ Label|get:i }}</option>
+											<option value="修改" style="color:#7fb80e;font-weight: bold">修改</option>
+										</select>
+										<input class="addmessage_phone" id="addoption{{ i }}" style="margin: 0 0 0 -100px;width: 60px;height: 16px;display:none;border-style:none;outline:none;
+										 " value="{{ Label|get:i }}"></input>
+										<span style="margin:0 0 0 20px;">
+											<input class="addmessage_phone" id="id_update_phone{{ i }}" name="update_phone" placeholder="电话" type="text" value="{{ PhoneNum|get:i }}" />
+										</span>
+									</td>
+								</tr>
+							{% endfor %}
+
+						</table>
+					</div>
+				</div>
+				<div class="form-row">
+					<div>
+						<table>
+							<tr>
+								<td style="vertical-align:text-top;"><label class='required'>地址</label></td>
+								<td>{{ updateform.update_address }}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="form-row">
+					<div>
+						<table>
+							<tr>
+								<td style="vertical-align:text-top;"><label class='required'>其它</label></td>
+								<td>{{ updateform.update_other }}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div>
+					<input type="button" value="Back" class="sub" onclick="go_back()" />
+					<input type="submit" name="Update" value="Update" class="sub" style="margin-left: 13px;" onclick="confirm()" />
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 </body>
 
 <script type="text/javascript">
-   function go_back()
-   {
-      //history.go(-1); //返回上一页
-      window.location.href="../../"
-   }
-   function confirm()
-   {
-      alert('更新成功！');
-   }
+	function go_back()
+	{
+		//history.go(-1); //返回上一页
+		window.location.href="../../"
+	}
+	function confirm()
+	{
+		alert('更新成功！');
+	}
+
+	function delRow(obj) //删除行
+	{
+		var Row=obj.parentNode;
+		while(Row.tagName.toLowerCase()!="tr")
+		{
+			Row=Row.parentNode;
+		}
+		Row.parentNode.removeChild(Row);//删除行
+	}
+
+	//添加行
+	jQuery(function(){
+		var counter ={{ Length|length }};
+		jQuery('input.addRow').click(function(event){
+			event.preventDefault();
+			counter++;
+			var newRow = jQuery('<tr id="tr'+counter+'" ><td><label class="required"></label></td><td><span style="margin: 0px 0px 0px 50px"><input type="image" src="/static/images/remove.png" style="outline: 0" class="delbtn" onclick="delRow(this)" /> </span> <select id='+counter+' name="label" style="width: 95px;margin: -5px 2px -5px" onchange="changeFunc();"><option>手机</option></option><option value="修改" style="color:#7fb80e;font-weight: bold">修改</option></select> <input class="addmessage_phone" id="addoption'+counter+'" style="margin: 0 0 0 -100px;width: 60px;height: 16px;display:none;border-style:none;outline: none;" value="手机"></input><span style="margin:0 0 0 20px;"><input class="addmessage_phone" id="id_update_phone'+counter+'" name="update_phone" placeholder="电话" type="text" /></span></td><td style="font:italic bold 15px/20px arial,sans-serif;color:red">*必填</td></tr>');
+			jQuery('table#phone').append(newRow);
+		});
+});
+
+
+	function changeFunc()
+	{
+		var i=0;
+		var ids_myselect=[];
+		var id_myselect;
+		$("select").each(function(){
+			ids_myselect.push($(this).attr("id"))  //查找所有select的id
+		});
+		$.each(ids_myselect,function(key,value){   //遍历id
+			if($("#"+value).is(":focus")==true)    //判断是否聚焦在id为value的select
+			{
+				id_myselect=value;
+				i=value;
+			}
+		});
+		var id_addoption="addoption"+i;
+		var selectBox=document.getElementById(id_myselect);
+		if(selectBox.selectedIndex==1)
+		{
+			$("#"+id_addoption).show();
+			$("#"+id_addoption).focus();
+		}
+		else
+		{
+			$("#"+id_addoption).hide();
+		}
+		$("#"+id_addoption).blur(function(){
+			var value=$("#"+id_addoption).val();
+			var obj=document.getElementById(id_myselect);
+			var opt=obj.options[0];
+			opt.value=value;
+			opt.text=value;
+			$("#"+id_addoption).hide();
+			$("#"+id_myselect).val(value);
+		});
+	}		
+
 </script>
 
 </html>

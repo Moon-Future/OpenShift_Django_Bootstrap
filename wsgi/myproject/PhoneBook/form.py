@@ -7,7 +7,7 @@ class AddForm(forms.Form):
 			error_messages={'required':'请输入姓名'},
 			widget=forms.TextInput(
 					attrs={
-						'class':'addmessage',
+						'class':'addmessage_name',
 						'placeholder':r'姓名',
 					}
 				),
@@ -17,7 +17,7 @@ class AddForm(forms.Form):
 			error_messages={'required':'请输入电话'},
 			widget=forms.TextInput(
 					attrs={
-						'class':'addmessage',
+						'class':'addmessage_phone',
 						'placeholder':r'电话',
 					}
 				),
@@ -36,10 +36,11 @@ class AddForm(forms.Form):
 			widget=forms.Textarea(
 					attrs={
 						'class':'vtextarea',
-						# 'placeholder':r'其它',
+						'placeholder':r'其它',
 					}
 				),
 		)
+
 
 class UpdateForm(forms.Form):
 	update_name=forms.CharField(
@@ -47,7 +48,7 @@ class UpdateForm(forms.Form):
 			error_messages={'required':'请输入姓名'},
 			widget=forms.TextInput(
 					attrs={
-						'class':'addmessage',
+						'class':'addmessage_name',
 						'placeholder':r'姓名',
 					}
 				),
@@ -57,7 +58,7 @@ class UpdateForm(forms.Form):
 			error_messages={'required':'请输入电话'},
 			widget=forms.TextInput(
 					attrs={
-						'class':'addmessage',
+						'class':'addmessage_phone',
 						'placeholder':r'电话',
 					}
 				),
