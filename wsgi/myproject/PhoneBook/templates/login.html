@@ -1,75 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Contacts</title>
-	<meta charset="utf-8">
-	<link href="/static/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
-	<script type="text/javascript" src="/static/js/jquery-1.8.0.js"></script>
-	<link rel="shortcut icon" href="/static/images/haomyun.ico" />
-
-	<style type="text/css">
-		.img_top{
-			background-color: #90d7ec;
-			margin-left: -20px;
-			margin-right: -20px;
-			margin-top: -26px; 
-		}
-	</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacts</title>
+  <link rel="stylesheet" href="/static/css/bootstrap.css">  
+  <script src="/static/js/jquery-3.0.0.js"></script>
+  <script src="/static/js/bootstrap.js"></script>
+  <link rel="shortcut icon" href="/static/images/haomyun.ico" />
 </head>
-
-<!-- <body style="background-image: url(/static/images/bgbody2.jpg);"> -->
-<body>
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<div class="img_top">
-				<h2 class="text-center">
-					<span class="marker"><br />非一般的逗比<br />通讯录</span>
-				</h2>
-				<div style="margin-left: 20px;">
-					<ul class="nav nav-tabs">
-						<li>
-							<a href="..">首页</a>
-						</li>
-						<li>
-							<a href="../add">添加联系人</a>
-						</li>
-						<li class="disabled">
-							<a href="../delete">删除联系人</a>
-						</li>
-						<li class="active">
-							<a href="">登录</a>
-						</li>                           
-					</ul>
-				</div>
-			</div>
-			<form method='post'>
-				{% csrf_token %}
-				<div class="form-row">
-					<table>
-						<tr>
-							<td><label class='required'>用户名</label></td>
-							<td>{{ loginfrom.username }}</td>
-							<td style="font:italic bold 15px/20px arial,sans-serif;color:red">*必填</td>
-						</tr>
-					</table>
-				</div>  
-				<div class="form-row">
-					<table>
-						<tr>
-							<td><label class='required'>密码</label></td>
-							<td>{{ loginfrom.password }}</td>
-							<td style="font:italic bold 15px/20px arial,sans-serif;color:red">*必填</td>
-						</tr>
-					</table>
-				</div> 
-				<div>
-					<input type="submit" name="登录" value="Login" class="sub" style="margin-left: 13px;" />
-				</div> 
-			</form>
-		</div>
-	</div>
-</div>
+<body style="background:url(/static/images/001.jpg) no-repeat fixed center;background-size: cover;
+">
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../" style="padding: 13px">
+          <span class="glyphicon glyphicon-phone-alt"></span>
+          Contacts
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="../phonenum">PhoneNum</a></li>
+          <li><a href="../add">AddUser</a></li>
+          <li><a href="../delete">DelUser</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px"><a href="" style="text-decoration:none">Sign in</a></button></li>
+          <li><button type="button" class="btn btn-success navbar-btn"><a href="" style="text-decoration:none">Sign up</a></button></li>
+        </ul>
+        <form class="navbar-form navbar-right">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search"></input>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-info">Search</button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="col-md-offset-4">
+    <h1>敬请期待...~~O(∩_∩)O~~</h1>
+  </div>
 </body>
-
 </html>

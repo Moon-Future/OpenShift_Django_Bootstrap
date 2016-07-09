@@ -7,27 +7,32 @@
   <link rel="stylesheet" href="/static/css/bootstrap.css">  
   <script src="/static/js/jquery-3.0.0.js"></script>
   <script src="/static/js/bootstrap.js"></script>
+  <link rel="shortcut icon" href="/static/images/haomyun.ico" />
 </head>
 <body style="background:url(/static/images/001.jpg) no-repeat fixed center;background-size: cover;
 ">
   <nav class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="http://127.0.0.1:8000" style="padding: 13px">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../" style="padding: 13px">
           <span class="glyphicon glyphicon-phone-alt"></span>
           Contacts
         </a>
       </div>
-      <div class="collapse navbar-collapse">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><a href="../phonenum">PhoneNum</a></li>
           <li><a href="../add">AddUser</a></li>
           <li class="active"><a href="">DelUser</a></li>
         </ul>
-
         <ul class="nav navbar-nav navbar-right">
-          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px">Sign in</button></li>
-          <li><button type="button" class="btn btn-success navbar-btn">Sign up</button></li>
+          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px"><a href="../login" style="text-decoration:none">Sign in</a></button></li>
+          <li><button type="button" class="btn btn-success navbar-btn"><a href="../login" style="text-decoration:none">Sign up</a></button></li>
         </ul>
         <form class="navbar-form navbar-right">
           <div class="input-group">
