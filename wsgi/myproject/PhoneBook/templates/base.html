@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}Contacts{% endblock %}</title>
+	{% block basehead %}
+		<meta charset="utf-8">
+		<link href="/static/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
+		<script type="text/javascript" src="/static/js/jquery-1.8.0.js"></script>
+		<link rel="shortcut icon" href="/static/images/haomyun.ico" />
+	{% endblock %}
+	{% block head %}{% endblock %}
+</head>
+<body>
+	{% block content %}
+		<div class="img_top">
+				<h2 class="text-center">
+					<span class="marker"><br />非一般的逗比<br />通讯录</span>
+				</h2>
+				<div style="margin-left: 20px;">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a href="">首页</a>
+						</li>
+						<li>
+							<a href="add">添加联系人</a>
+						</li>
+						<li class="disabled">
+							<a href="delete">删除联系人</a>
+						</li>
+						<li>
+							<a href="#">登录</a>
+						</li>				
+						<li>
+							<a href="#">注册</a>
+						</li>				
+					</ul>
+				</div>
+			</div>
+	{% endblock %}
+
+</body>
+</html>

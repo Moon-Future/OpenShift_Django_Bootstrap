@@ -11,6 +11,9 @@ from django.template.defaulttags import register
 def get(d, key_name):
 	return d.get(key_name,'')
 
+def index(request):
+	return render(request,"index.html")
+
 # Create your views here.
 def phone(request):  #通讯录首页
 	messageuser=MessageUser.objects.all()
@@ -47,7 +50,7 @@ def add(request):    #添加联系人
 				PhoneNum=phone[i]
 				new_phone=PhoneNumber.objects.get_or_create(PhoneNum=PhoneNum,user_id=user_id,PhoneLabel=PhoneLabel)
 			if request.POST.get("Save"):
-				return HttpResponseRedirect('../')
+				return HttpResponseRedirect('../phonenum')
 			else:
 				return HttpResponseRedirect('.')
 	else:
@@ -101,7 +104,7 @@ def detail(request,pk):  #联系人详细信息
 					phonenumber[i].PhoneNum=phone[i]
 					phonenumber[i].save()
 			if request.POST.get("Update"):
-				return HttpResponseRedirect('../../')
+				return HttpResponseRedirect('../../phonenum')
 	else:
 		updateform=UpdateForm(initial={
 				'update_name':user.Name,
@@ -120,7 +123,7 @@ def delete(request):
 			phone=PhoneNumber.objects.filter(user_id=each)
 			for each_phone in phone:
 				each_phone.delete()
-		return HttpResponseRedirect('..')
+		return HttpResponseRedirect('../phonenum')
 
 	messageuser=MessageUser.objects.all()
 	PhoneNum={} #记录联系人id：电话归属地：电话
@@ -156,3 +159,7 @@ def delete(request):
 # 				return render_to_response('login.html',RequestContext(request,{'form':form,'password_is_wrong':True}))
 # 		else:
 # 			return render_to_response('login.html',RequestContext(request,{'form':form,}))		
+
+def login(request):
+	loginfrom=LoginForm()
+	return render(request,"login.html",{'loginfrom':loginfrom})

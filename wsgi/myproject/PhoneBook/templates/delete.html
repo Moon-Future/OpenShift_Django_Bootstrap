@@ -1,167 +1,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Contacts</title>
-	<!-- <link href="http://www.francescomalagrino.com/BootstrapPageGenerator/3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen"> -->
-	<meta charset="utf-8">
-	<link href="/static/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
-	<script type="text/javascript" src="/static/js/jquery-1.8.0.js"></script>
-	<link rel="shortcut icon" href="/static/images/haomyun.ico" />
-	<style type="text/css">
-			.img_top{
-			background-color: #90d7ec;
-			margin-left: -20px;
-			margin-right: -20px;
-			margin-top: -26px; 
-		}
-
-		    .sub{
-	        padding: 12px 14px;
-	        margin: 20px 0 20px;
-	        background: #228fbd;
-	        border: 1px solid #eee;
-	        border-radius: 4px;
-	        margin-left: 5px; 
-	        font-weight: bold;
-	        color: #cde6c7;
-	    }
-	</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacts</title>
+  <link rel="stylesheet" href="/static/css/bootstrap.css">  
+  <script src="/static/js/jquery-3.0.0.js"></script>
+  <script src="/static/js/bootstrap.js"></script>
 </head>
+<body style="background:url(/static/images/001.jpg) no-repeat fixed center;background-size: cover;
+">
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="http://127.0.0.1:8000" style="padding: 13px">
+          <span class="glyphicon glyphicon-phone-alt"></span>
+          Contacts
+        </a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="../phonenum">PhoneNum</a></li>
+          <li><a href="../add">AddUser</a></li>
+          <li class="active"><a href="">DelUser</a></li>
+        </ul>
 
-<body>
-<!-- <body style="background-image: url(/static/images/bgbody2.jpg);"> -->
-<body>
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<div class="img_top">
-				<h2 class="text-center">
-					<span class="marker"><br />非一般的逗比<br />通讯录</span>
-				</h2>
-				<div style="margin-left: 20px;">
-					<ul class="nav nav-tabs">
-						<li>
-							<a href="..">首页</a>
-						</li>
-						<li>
-							<a href="../add">添加联系人</a>
-						</li>
-						<li  class="active">
-							<a href="">删除联系人</a>
-						</li>
-						<li>
-							<a href="#">登录</a>
-						</li>				
-						<li>
-							<a href="#">注册</a>
-						</li>				
-					</ul>
-				</div>
-			</div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px">Sign in</button></li>
+          <li><button type="button" class="btn btn-success navbar-btn">Sign up</button></li>
+        </ul>
+        <form class="navbar-form navbar-right">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search"></input>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-info">Search</button>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <form method="POST">
+      {% csrf_token %}
+      <table class="table table-hover ">
+        <thead>
+          <tr>
+            <th width="1%"><input type="checkbox" name='all' value='0' onclick="allSelect('all', 'single')"/></th>
+            <th width="10%">姓名</th>
+            <th width="25%"><span  style="margin-left:75px">电话</span></th>
+            <th width="40%">地址</th>
+            <th>更新日期</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for each in messageuser %}
+            <tr>
+              <td>
+                <input type="checkbox" name='single' value='{{ each.pk }}' onclick="singleSelect2parent('all', 'single')"/>
+              </td>
+              <td><a href="../{{ each.pk }}/detail">{{ each.Name }}</a></td>
+              <td>
+                <select id="select_{{ each.id }}" style="width: 65px;margin: -5px 2px -5px;border-radius: 2px;border: 1px solid #cccccc;padding: 4px 6px;">
+                  {% if Label|get:each.id|length_is:"1" %}  <!--若电话标签个数为1-->
+                    <option value="{{ Label|get:each.id|first }}_{{ each.id }}">
+                      {{ Label|get:each.id|first }}     <!--第一个电话标签-->
+                    </option>
+                  {% else %}  <!--有多个电话-->
+                    <option value="{{ Label|get:each.id|first }}_{{ each.id }}">
+                      {{ Label|get:each.id|first }} <!--先得第一个电话-->
+                    </option>
+                    {% for label in Label|get:each.id|slice:"1:" %}
+                      <option value="{{ label }}_{{ each.id }}">
+                        {{ label }}    <!--再得后面几个电话-->
+                      </option>
+                    {% endfor %}
+                  {% endif %}
+                </select>
 
-			<form method='post'>
-				{% csrf_token %}
-				<!-- <input type="submit" value="删除联系人" onclick="static_num()" /> -->
-				<table class="table table-hover table-striped">
-					<thead>
-						<tr>
-							<th width="1%">
-								<input type="checkbox" name='all' value='0' onclick="allSelect('all', 'single')"/>
-							</th>
-							<th width="10%">
-								姓名
-							</th>
-							<th width="25%">
-								<span style="margin-left: 90px;">
-									电话
-								</span>
-							</th>
-							<th width="40%">
-								地址
-							</th>
-							<th>
-								更新时间
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for each in messageuser %}
-							<tr>
-								<td>
-									<input type="checkbox" name='single' value='{{ each.pk }}' onclick="singleSelect2parent('all', 'single')">
-								</td>
-								<td>
-									<a href="{{ each.pk }}/detail">
-										{{ each.Name }}
-									</a>
-								</td>
-								<td>
-									<select id="select_{{ each.id }}" style="width: 80px;margin: -5px 2px -5px">
-										{% if Label|get:each.id|length_is:"1" %}  <!--若电话标签个数为1-->
-											<option value="{{ Label|get:each.id|first }}_{{ each.id }}">
-												{{ Label|get:each.id|first }}     <!--第一个电话标签-->
-											</option>
-										{% else %}  <!--有多个电话-->
-											<option value="{{ Label|get:each.id|first }}_{{ each.id }}">
-												{{ Label|get:each.id|first }} <!--先得第一个电话-->
-											</option>
-											{% for label in Label|get:each.id|slice:"1:" %}
-												<option value="{{ label }}_{{ each.id }}">
-													{{ label }}    <!--再得后面几个电话-->
-												</option>
-											{% endfor %}
-										{% endif %}
-									</select>
-
-									{% if Label|get:each.id|length_is:"1" %} <!--若电话标签个数为1-->
-										{% for label in Label|get:each.id %} 
-											<a href="tel:{{ PhoneNum|get:each.id|get:label }}">
-												<span id="{{ label }}_{{ each.id }}">
-													{{ PhoneNum|get:each.id|get:label }}
-												</span>
-											</a>
-										{% endfor %}
-									{% else %}
-										{% for label in Label|get:each.id|slice:":1" %}
-											<a href="tel:{{ PhoneNum|get:each.id|get:label }}">
-												<span id="{{ label }}_{{ each.id }}">
-													{{ PhoneNum|get:each.id|get:label }}
-												</span>
-											</a>
-										{% endfor %}
-										{% for label in Label|get:each.id|slice:"1:" %}
-											<a href="tel:{{ PhoneNum|get:each.id|get:label }}">
-												<span id="{{ label }}_{{ each.id }}" style="display: none">
-													{{ PhoneNum|get:each.id|get:label }}
-												</span>
-											</a>
-										{% endfor %}
-									{% endif %}
-									
-								</td>
-								<td>
-									{{ each.Address }}
-								</td>
-								<td>
-									{{ each.UpdateTime|date:"Y-m-d H:i:s" }}
-								</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-				<div>
-					<input type="button" value="取消" class="sub" onclick="go_back()" />
-			    	<input type="submit" value="删除" class="sub" style="margin-left: 13px; background:red;" />
-				</div>
-			</form>
-		</div>
-	</div>
-</div>			
+                {% if Label|get:each.id|length_is:"1" %} <!--若电话标签个数为1-->
+                  {% for label in Label|get:each.id %} 
+                    <a href="tel:{{ PhoneNum|get:each.id|get:label }}">
+                      <span id="{{ label }}_{{ each.id }}">
+                        {{ PhoneNum|get:each.id|get:label }}
+                      </span>
+                    </a>
+                  {% endfor %}
+                {% else %}
+                  {% for label in Label|get:each.id|slice:":1" %}
+                    <a href="tel:{{ PhoneNum|get:each.id|get:label }}">
+                      <span id="{{ label }}_{{ each.id }}">
+                        {{ PhoneNum|get:each.id|get:label }}
+                      </span>
+                    </a>
+                  {% endfor %}
+                  {% for label in Label|get:each.id|slice:"1:" %}
+                    <a href="tel:{{ PhoneNum|get:each.id|get:label }}">
+                      <span id="{{ label }}_{{ each.id }}" style="display: none">
+                        {{ PhoneNum|get:each.id|get:label }}
+                      </span>
+                    </a>
+                  {% endfor %}
+                {% endif %}  
+              </td>
+              <td>{{ each.Address }}</td>
+              <td>{{ each.UpdateTime|date:"Y-m-d H:i:s" }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div>
+        <input type="button" value="Cancle" class="btn btn-danger" onclick="go_back()" />
+        <input type="submit" value="Delete" class="btn btn-success" onclick="static_num()"/>
+      </div>
+    </form>
+  </div>
 </body>
 
-<script>
-	function static_num()
-	{
+<script type="text/javascript">
+  function static_num()
+  {
       var arr=new Array();
       var x=0;
       var items=document.getElementsByName('single');
@@ -177,7 +135,7 @@
       {
          window.event.returnValue=false;
       }
-	}
+  }
 
    function allSelect(check_v, checkname)
    {
@@ -215,32 +173,31 @@
        }
    }
 
-	function go_back()
-	{
-		//history.go(-1); //返回上一页
-		window.location.href="../"; //返回主页
-	}
+  function go_back()
+  {
+    //history.go(-1); //返回上一页
+    window.location.href="../phonenum"; //返回主页
+  }
 
-	$(document).ready(function()
-	{
-		{% for each in messageuser %}
-			$("#select_{{ each.id }}").change(function()
-			{
-				var select_value=$("#select_{{ each.id }}").val();
-				{% for label in Label|get:each.id %}
-					if("{{ label }}_{{ each.id }}"==select_value)
-					{
-						$("span#{{ label }}_{{ each.id }}").show();
-					}
-					else
-					{
-						$("span#{{ label }}_{{ each.id }}").hide();
-					}
-				{% endfor %}
-			});
-		{% endfor %}
-	});
-
+  $(document).ready(function()
+  {
+    {% for each in messageuser %}
+      $("#select_{{ each.id }}").change(function()
+      {
+        var select_value=$("#select_{{ each.id }}").val();
+        {% for label in Label|get:each.id %}
+          if("{{ label }}_{{ each.id }}"==select_value)
+          {
+            $("span#{{ label }}_{{ each.id }}").show();
+          }
+          else
+          {
+            $("span#{{ label }}_{{ each.id }}").hide();
+          }
+        {% endfor %}
+      });
+    {% endfor %}
+  });
 </script>
 
 </html>
