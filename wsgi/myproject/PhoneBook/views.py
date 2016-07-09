@@ -161,5 +161,4 @@ def delete(request):
 # 			return render_to_response('login.html',RequestContext(request,{'form':form,}))		
 
 def login(request):
-	loginfrom=LoginForm()
-	return render(request,"login.html",{'loginfrom':loginfrom})
+	return render(request,"login.html")

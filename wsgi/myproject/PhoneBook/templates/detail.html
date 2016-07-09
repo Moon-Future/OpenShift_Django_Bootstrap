@@ -9,8 +9,7 @@
   <script src="/static/js/bootstrap.js"></script>
   <link rel="shortcut icon" href="/static/images/haomyun.ico" />
 </head>
-<body style="background:url(/static/images/001.jpg) no-repeat fixed center;background-size: cover;
-">
+<body style="background:url(/static/images/001.jpg) no-repeat fixed center;background-size: cover;">
   <nav class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
@@ -50,74 +49,84 @@
       {% csrf_token %}
       <div class="form-group">
         {{ updateform.update_name.errors }}
-        <label for="username" class="col-sm-3 control-label">姓名</label>
-        <div class="col-sm-3">
+        <label for="username" class="col-sm-1 control-label">姓名</label>
+        <div class="col-lg-3 col-md-4 col-sm-5">
           {{ updateform.update_name }}
         </div>
       </div>
       <span id="phonenum">
         <div class="form-group">
           {{ updateform.update_phone.errors }}
-          <label for="phonenum" class="col-sm-3 control-label">电话</label>
-          <div class="col-sm-3">
+          <label for="phonenum" class="col-sm-1 control-label">电话</label>
+          <div class="col-lg-3 col-md-4 col-sm-5">
             <div class="input-group">
               <span class="input-group-addon">
-                <select id="0" name="label" style="background-color:#eee ;width:80px; height:33px;
-                margin:-33px -14px;" onchange="changeFunc();">
+                <select id="0" name="label" style="width:80px; height:35px;
+                margin:-34px -13px;border-radius: 3px;" onchange="changeFunc();">
                   <option value="{{ Label.0 }}">{{ Label.0 }}</option>
                   <option value="修改" style="color:#7fb80e;font-weight: bold">修改</option>
                 </select>
                 <input type="text" class="form-control" id="addoption0" style="display:none;margin:-22px 0px -10px -11px;height: 31px;width: 62px;border-style:none;" value="{{ Label.0 }}"></input>
               </span>
               <input class="form-control" id="id_update_phone0" name="update_phone" placeholder="电话" type="text" value="{{ PhoneNum.0 }}" />
+              <div class="input-group-addon">
+                <input type="image" src="/static/images/add.png" id="addRow" style="outline: 0"></input>
+              </div>
             </div>
-          </div>
-          <div class="col-sm-1" style="margin:3px 0 0 0">
-            <input type="image" src="/static/images/add.png" class="addRow" style="outline: 0"></input>
           </div>
         </div>
         {% for i in Length %}
-        <div class="form-group">
-          {{ updateform.update_phone.errors }}
-          <label for="phonenum" class="col-sm-3 control-label"></label>
-          <div class="col-sm-3">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <select id="{{ i }}" name="label" style="background-color:#eee ;width:80px; height:33px;
-                margin:-33px -14px;" onchange="changeFunc();">
-                  <option value="{{ Label|get:i }}">{{ Label|get:i }}</option>
-                  <option value="修改" style="color:#7fb80e;font-weight: bold">修改</option>
-                </select>
-                <input type="text" class="form-control" id="addoption{{ i }}" style="display:none;margin:-22px 0px -10px -11px;height: 31px;width: 62px;border-style:none;" value="{{ Label|get:i }}"></input>
-              </span>
-              <input class="form-control" id="id_update_phone{{ i }}" name="update_phone" placeholder="电话" type="text" value="{{ PhoneNum|get:i }}" />
+        <span>
+          <div class="form-group">
+            {{ updateform.update_phone.errors }}
+            <label for="phonenum" class="col-sm-1 control-label"></label>
+            <div class="col-lg-3 col-md-4 col-sm-5">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <select id="{{ i }}" name="label" style="width:80px; height:35px;
+                  margin:-34px -13px;" onchange="changeFunc();">
+                    <option value="{{ Label|get:i }}">{{ Label|get:i }}</option>
+                    <option value="修改" style="color:#7fb80e;font-weight: bold">修改</option>
+                  </select>
+                  <input type="text" class="form-control" id="addoption{{ i }}" style="display:none;margin:-22px 0px -10px -11px;height: 31px;width: 62px;border-style:none;" value="{{ Label|get:i }}"></input>
+                </span>
+                <input class="form-control" id="id_update_phone{{ i }}" name="update_phone" placeholder="电话" type="text" value="{{ PhoneNum|get:i }}" />
+                <div class="input-group-addon">
+                  <input type="image" src="/static/images/remove.png" style="outline: 0" onclick="delRow(this)"></input>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-sm-1" style="margin:3px 0 0 0">
-            <input type="image" src="/static/images/remove.png" style="outline: 0" onclick="delRow(this)"></input>
-          </div>
-        </div>
+        </span>
         {% endfor %} 
       </span>
       <div class="form-group">
-        <label for="address" class="col-sm-3 control-label">地址</label>
-        <div class="col-sm-3" style="width: 500px;">
+        <label for="address" class="col-sm-1 control-label">地址</label>
+        <div class="col-sm-2" style="width: 500px;">
           {{ updateform.update_address }}
         </div>
       </div>
       <div class="form-group">
-        <label for="other" class="col-sm-3 control-label">其它</label>
-        <div class="col-sm-3" style="width: 500px;" >
+        <label for="other" class="col-sm-1 control-label">其它</label>
+        <div class="col-sm-2" style="width: 500px;" >
           {{ updateform.update_other }}
         </div>
       </div>
-      <div class="row" style="margin-top: 50px">
-        <div class="col-sm-1 col-sm-offset-3">
-          <button type="button" class="btn btn-danger" onclick="go_back()">Cancle</button>
-        </div>
-        <div class="col-sm-1">
-          <input type="submit" name="Update" value="Save" class="btn btn-success" onclick="confirm()" />
-        </div>
+      <div style="margin: 50px 0 0 40px" class="visible-lg-block">
+        <button type="button" class="btn btn-danger" onclick="go_back()">Cancle</button>
+        <input type="submit" name="Update" value="Save" class="btn btn-success" onclick="confirm()" />
+      </div>
+      <div style="margin: 50px 0 0 22px" class="visible-md-block">
+        <button type="button" class="btn btn-danger" onclick="go_back()">Cancle</button>
+        <input type="submit" name="Update" value="Save" class="btn btn-success" onclick="confirm()" />
+      </div>
+      <div style="margin: 50px 0 0 6px" class="visible-sm-block">
+        <button type="button" class="btn btn-danger" onclick="go_back()">Cancle</button>
+        <input type="submit" name="Update" value="Save" class="btn btn-success" onclick="confirm()" />
+      </div>
+      <div style="margin: 50px 0 0 0px" class="visible-xs-block">
+        <button type="button" class="btn btn-danger" onclick="go_back()">Cancle</button>
+        <input type="submit" name="Update" value="Save" class="btn btn-success" onclick="confirm()" />
       </div>
     </form>
   </div>
@@ -147,10 +156,10 @@
   //添加行
   jQuery(function(){
     var counter = 0;
-    jQuery('input.addRow').click(function(event){
+    jQuery('input#addRow').click(function(event){
       event.preventDefault();
       counter++;
-      var newRow = jQuery('<span><div class="form-group"><label for="phonenum" class="col-sm-3 control-label"></label><div class="col-sm-3"><div class="input-group"><span class="input-group-addon"><select id='+counter+' name="label" style="background-color:#eee ;width:80px; height:33px;margin:-33px -14px;" onchange="changeFunc();"><option value="手机">手机</option><option value="修改" style="color:#7fb80e;font-weight: bold">修改</option></select><input type="text" class="form-control" id="addoption'+counter+'" style="display:none;margin:-22px 0px -10px -11px;height: 31px;width: 62px;border-style:none;" value="自定义"></input></span>{{ updateform.update_phone }}</div></div><div class="col-sm-1" style="margin:3px 0 0 0"><input type="image" src="/static/images/remove.png" style="outline: 0" class="delbtn" onclick="delRow(this)"></input></div></div></span>');
+      var newRow = jQuery('<span><div class="form-group"><label for="phonenum" class="col-sm-1 control-label"></label><div class="col-lg-3 col-md-4 col-sm-5"><div class="input-group"><span class="input-group-addon"><select id='+counter+' name="label" style="width:80px; height:35px;margin:-34px -13px;" onchange="changeFunc();"><option value="手机">手机</option><option value="修改" style="color:#7fb80e;font-weight: bold">修改</option></select><input type="text" class="form-control" id="addoption'+counter+'" style="display:none;margin:-22px 0px -10px -11px;height: 31px;width: 62px;border-style:none;" value="自定义"></input></span>{{ updateform.update_phone }}<div class="input-group-addon"><input type="image" src="/static/images/remove.png" style="outline: 0" onclick="delRow(this)"></input></div></div></div></div></span>');
       jQuery('span#phonenum').append(newRow);
     });
 });
