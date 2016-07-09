@@ -10,7 +10,7 @@
   <link rel="shortcut icon" href="/static/images/haomyun.ico" />
 </head>
 <body style="background:url(/static/images/001.jpg) no-repeat fixed center;background-size: cover;">
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default">  <!-- <nav class="navbar navbar-default"> -->
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -30,7 +30,7 @@
           <li><a href="../delete">DelUser</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px"><a href="../login" style="text-decoration:none">Sign in</a></button></li>
+          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px"><a href="../login" style="text-decoration:none">Log in</a></button></li>
           <li><button type="button" class="btn btn-success navbar-btn"><a href="../login" style="text-decoration:none">Sign up</a></button></li>
         </ul>
         <form class="navbar-form navbar-right">
@@ -68,7 +68,7 @@
                   <option value="自定义">自定义</option>
                   <option value="修改自定义" style="color:#7fb80e;font-weight: bold">修改自定义</option>
                 </select>
-                <input type="text" class="form-control" id="addoption0" style="display:none;margin:-22px 0px -10px -11px;height: 31px;width: 62px;border-style:none;" value="自定义"></input>
+                <input type="text" class="form-control" id="addoption0" style="display:none;margin:-25px 0px -10px -11px;height: 31px;width: 62px;border-style:none;" value="自定义"></input>
               </span>
               {{ addform.add_phone }}
               <div class="input-group-addon">
@@ -144,11 +144,11 @@
 
   //添加行
   jQuery(function(){
-    var counter ={{ Length|length }};
+    var counter =0;
     jQuery('input#addRow').click(function(event){
       event.preventDefault();
       counter++;
-      var newRow = jQuery('<span><div class="form-group"><label for="phonenum" class="col-sm-1 control-label"></label><div class="col-lg-3 col-md-4 col-sm-5"><div class="input-group"><span class="input-group-addon"><select id='+counter+' name="label" style="width:80px; height:35px;margin:-34px -13px;border-radius: 3px;" onchange="changeFunc();"><option value="手机">手机</option><option value="工作">工作</option><option value="自定义">自定义</option><option value="修改自定义" style="color:#7fb80e;font-weight: bold">修改自定义</option></select><input type="text" class="form-control" id="addoption'+counter+'" style="display:none;margin:-22px 0px -10px -11px;height: 31px;width: 62px;border-style:none;" value="自定义"></input></span>{{ addform.add_phone }}<div class="input-group-addon"><input type="image" src="/static/images/remove.png" style="outline: 0" onclick="delRow(this)"></input></div></div></div></div></span>');
+      var newRow = jQuery('<span><div class="form-group"><label for="phonenum" class="col-sm-1 control-label"></label><div class="col-lg-3 col-md-4 col-sm-5"><div class="input-group"><span class="input-group-addon"><select id='+counter+' name="label" style="width:80px; height:35px;margin:-34px -13px;border-radius: 3px;" onchange="changeFunc();"><option value="手机">手机</option><option value="工作">工作</option><option value="自定义">自定义</option><option value="修改自定义" style="color:#7fb80e;font-weight: bold">修改自定义</option></select><input type="text" class="form-control" id="addoption'+counter+'" style="display:none;margin:-25px 0px -10px -11px;height: 31px;width: 62px;border-style:none;" value="自定义"></input></span>{{ addform.add_phone }}<div class="input-group-addon"><input type="image" src="/static/images/remove.png" style="outline: 0" onclick="delRow(this)"></input></div></div></div></div></span>');
       jQuery('span#phonenum').append(newRow);
     });
 });
