@@ -45,6 +45,12 @@ class AddForm(forms.Form):
 				),
 		)
 
+	def clean_add_phone(self):
+		add_phone=self.cleaned_data['add_phone']
+		if not re.match(r'^1\d{10}$', add_phone):
+			raise forms.ValidationError('请填写正确的号码格式~')
+		return add_phone	
+
 
 class UpdateForm(forms.Form):
 	update_name=forms.CharField(

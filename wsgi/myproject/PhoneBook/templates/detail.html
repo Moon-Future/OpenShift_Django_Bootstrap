@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contacts</title>
+  <title>Cloud Phone</title>
   <link rel="stylesheet" href="/static/css/bootstrap.css">  
-  <script src="/static/js/jquery-3.0.0.js"></script>
-  <script src="/static/js/bootstrap.js"></script>
+  <script src="/static/js/jquery-3.0.0.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
   <link rel="shortcut icon" href="/static/images/haomyun.ico" />
 </head>
-<body style="background:url(/static/images/001.jpg) no-repeat fixed center;background-size: cover;">
+<body style="background:url(/static/images/013.jpg) no-repeat fixed center;background-size: cover;width:auto">
   <nav class="navbar navbar-default">  <!-- <nav class="navbar navbar-default"> -->
     <div class="container">
       <div class="navbar-header">
@@ -18,9 +18,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../" style="padding: 13px">
-          <span class="glyphicon glyphicon-phone-alt"></span>
-          Contacts
+        <a class="navbar-brand" href="../../" style="margin-top: -6px">
+          <img src="/static/images/logo.png">
         </a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -29,13 +28,13 @@
           <li ><a href="../../add">AddUser</a></li>
           <li><a href="../../delete">DelUser</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px"><a href="../login" style="text-decoration:none">Log in</a></button></li>
-          <li><button type="button" class="btn btn-success navbar-btn"><a href="../login" style="text-decoration:none">Sign up</a></button></li>
+        <ul class="nav navbar-nav navbar-right" style="margin-left:0px">
+          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px;width:70px"><a href="../login" style="text-decoration:none">Log in</a></button></li>
+          <li><button type="button" class="btn btn-success navbar-btn" style="width:70px"><a href="../login" style="text-decoration:none">Sign up</a></button></li>
         </ul>
         <form class="navbar-form navbar-right">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search"></input>
+          <div class="input-group" style="width:167px">
+            <input type="text" class="form-control" placeholder="Name"></input>
             <span class="input-group-btn">
               <button type="button" class="btn btn-info">Search</button>
             </span>
@@ -45,19 +44,23 @@
     </div>
   </nav>
   <div class="container">
-    <form method="POST" class="form-horizontal">
+    <form method="POST" id="fromMessage" class="form-horizontal">
       {% csrf_token %}
       <div class="form-group">
-        {{ updateform.update_name.errors }}
-        <label for="username" class="col-sm-1 control-label">姓名</label>
+        <label for="username" class="col-sm-1 control-label" style="color:white">姓名</label>
+        <span style="color:red" name="nameError">
+          <strong></strong>
+        </span>
         <div class="col-lg-3 col-md-4 col-sm-5">
           {{ updateform.update_name }}
         </div>
       </div>
       <span id="phonenum">
         <div class="form-group">
-          {{ updateform.update_phone.errors }}
-          <label for="phonenum" class="col-sm-1 control-label">电话</label>
+          <label for="phonenum" class="col-sm-1 control-label" style="color:white">电话</label>
+          <span style="color:red" class="phoneError" name="0">
+            <strong></strong>
+          </span>
           <div class="col-lg-3 col-md-4 col-sm-5">
             <div class="input-group">
               <span class="input-group-addon">
@@ -78,7 +81,9 @@
         {% for i in Length %}
         <span>
           <div class="form-group">
-            {{ updateform.update_phone.errors }}
+            <span style="color:red" class="phoneError" name="{{ i }}">
+              <strong></strong>
+            </span>
             <label for="phonenum" class="col-sm-1 control-label"></label>
             <div class="col-lg-3 col-md-4 col-sm-5">
               <div class="input-group">
@@ -101,32 +106,32 @@
         {% endfor %} 
       </span>
       <div class="form-group">
-        <label for="address" class="col-sm-1 control-label">地址</label>
+        <label for="address" class="col-sm-1 control-label" style="color:white">地址</label>
         <div class="col-sm-2" style="width: 500px;">
           {{ updateform.update_address }}
         </div>
       </div>
       <div class="form-group">
-        <label for="other" class="col-sm-1 control-label">其它</label>
+        <label for="other" class="col-sm-1 control-label" style="color:white">其它</label>
         <div class="col-sm-2" style="width: 500px;" >
           {{ updateform.update_other }}
         </div>
       </div>
       <div style="margin: 50px 0 0 40px" class="visible-lg-block">
         <button type="button" class="btn btn-danger" onclick="go_back()">Cancle</button>
-        <input type="submit" name="Update" value="Save" class="btn btn-success" onclick="confirm()" />
+        <input type="submit" name="Update" value="Save" class="btn btn-success" />
       </div>
       <div style="margin: 50px 0 0 22px" class="visible-md-block">
         <button type="button" class="btn btn-danger" onclick="go_back()">Cancle</button>
-        <input type="submit" name="Update" value="Save" class="btn btn-success" onclick="confirm()" />
+        <input type="submit" name="Update" value="Save" class="btn btn-success" />
       </div>
       <div style="margin: 50px 0 0 6px" class="visible-sm-block">
         <button type="button" class="btn btn-danger" onclick="go_back()">Cancle</button>
-        <input type="submit" name="Update" value="Save" class="btn btn-success" onclick="confirm()" />
+        <input type="submit" name="Update" value="Save" class="btn btn-success" />
       </div>
       <div style="margin: 50px 0 0 0px" class="visible-xs-block">
         <button type="button" class="btn btn-danger" onclick="go_back()">Cancle</button>
-        <input type="submit" name="Update" value="Save" class="btn btn-success" onclick="confirm()" />
+        <input type="submit" name="Update" value="Save" class="btn btn-success" />
       </div>
     </form>
   </div>
@@ -138,28 +143,31 @@
     //history.go(-1); //返回上一页
     window.location.href="../../phonenum"
   }
-  function confirm()
-  {
-    alert('Success！');
-  }
 
   function delRow(obj) //删除行
   {
+    currentNum=$('.phoneError').length;
     var Row=obj.parentNode;
     while(Row.tagName.toLowerCase()!="span")
     {
       Row=Row.parentNode;
     }
     Row.parentNode.removeChild(Row);//删除行
+    /******删除末行 下面的name值往下递减******/
+    currentName=$(obj).parent().parent().parent().siblings("span").attr("name");
+    for(var i=parseInt(currentName)+1;i<currentNum;i++){
+      $('span[name='+i+']').attr("name",i-1);
+    }
   }
 
   //添加行
   jQuery(function(){
-    var counter ={{ Length|length }};
+    // var counter ={{ Length|length }};
     jQuery('input#addRow').click(function(event){
       event.preventDefault();
+      var counter=$($('.phoneError')[$('.phoneError').length-1]).attr("name");
       counter++;
-      var newRow = jQuery('<span><div class="form-group"><label for="phonenum" class="col-sm-1 control-label"></label><div class="col-lg-3 col-md-4 col-sm-5"><div class="input-group"><span class="input-group-addon"><select id='+counter+' name="label" style="width:80px; height:35px;margin:-34px -13px;" onchange="changeFunc();"><option value="手机">手机</option><option value="修改" style="color:#7fb80e;font-weight: bold">修改</option></select><input type="text" class="form-control" id="addoption'+counter+'" style="display:none;margin:-25px 0px -10px -11px;height: 31px;width: 62px;border-style:none;" value="手机"></input></span>{{ updateform.update_phone }}<div class="input-group-addon"><input type="image" src="/static/images/remove.png" style="outline: 0" onclick="delRow(this)"></input></div></div></div></div></span>');
+      var newRow = jQuery('<span><div class="form-group"><label for="phonenum" class="col-sm-1 control-label"></label><span class="phoneError" style="color:red" name='+counter+'><strong></strong></span><div class="col-lg-3 col-md-4 col-sm-5"><div class="input-group"><span class="input-group-addon"><select id='+counter+' name="label" style="width:80px; height:35px;margin:-34px -13px;" onchange="changeFunc();"><option value="手机">手机</option><option value="修改" style="color:#7fb80e;font-weight: bold">修改</option></select><input type="text" class="form-control" id="addoption'+counter+'" style="display:none;margin:-25px 0px -10px -11px;height: 31px;width: 62px;border-style:none;" value="手机"></input></span>{{ updateform.update_phone }}<div class="input-group-addon"><input type="image" src="/static/images/remove.png" style="outline: 0" onclick="delRow(this)"></input></div></div></div></div></span>');
       jQuery('span#phonenum').append(newRow);
     });
 });
@@ -201,6 +209,60 @@
     });
   }
 
+  $.ajaxSetup({
+      data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+  });
+
+  $('#fromMessage').submit(function(e){
+    e.preventDefault();
+    var name=$('#id_update_name').val();
+    var phoneArr=new Array();
+    $('input[name="update_phone"]').each(function(){
+      phoneArr.push($(this).val());
+    });
+    var data = $(this).serialize();
+    $.ajax({
+      url:'/{{ user.id }}/detail/',
+      type:'POST',
+      traditional:true,
+      cache:false,
+      data:data,
+      success:function(arg){
+        if((typeof arg)=='object'){  //是否为字典对象，若是，则传递来时的error信息
+          var len=$('input[name="update_phone"]').length;
+          if(arg.hasOwnProperty('nameError1') || arg.hasOwnProperty('nameError2')){  //是否有name error
+            // len=Object.keys(arg).length-1   //字典长度减去name error 即phone error长度
+            if(arg.hasOwnProperty('nameError1')){
+              nameErrorMessage=arg.nameError1
+            }else{
+              nameErrorMessage=arg.nameError2
+            }
+            $('span[name="nameError"] strong').text(nameErrorMessage);
+            for(var i=0;i<len;i++){
+              $('span[name='+i+'] strong').text(arg[i])
+            }
+          }else{
+            // len=Object.keys(arg).length
+            $('span[name="nameError"] strong').text('');
+          }
+          for(var i=0;i<len;i++){
+            if(arg.hasOwnProperty(i)){   //第i个phone是否error
+              $('span[name='+i+'] strong').text(arg[i])
+            }else{
+              $('span[name='+i+'] strong').text('')
+            }
+          }
+        }else{
+          $('span>strong').text('');
+          alert(arg);
+          window.location.href="../../phonenum";
+        }
+      },
+      error:function(){
+        console.log('failed!')
+      }
+    });
+  }); 
 </script>
 
 </html>

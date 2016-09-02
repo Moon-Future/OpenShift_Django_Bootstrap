@@ -2,14 +2,24 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-  <title>Contacts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cloud Phone</title>
   <link rel="stylesheet" href="/static/css/bootstrap.css">  
-  <script src="/static/js/jquery-3.0.0.js"></script>
-  <script src="/static/js/bootstrap.js"></script>
+  <script src="/static/js/jquery-3.0.0.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
   <link rel="shortcut icon" href="/static/images/haomyun.ico" />
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() 
+    {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4cb23102858baa64d68ddf7ee6a00f8c";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 </head>
-<body style="background:url(/static/images/001.jpg) no-repeat fixed center;background-size: cover;">
+<body style="background:url(/static/images/013.jpg) no-repeat fixed center;background-size: cover;width:auto">
   <nav class="navbar navbar-default">  <!-- <nav class="navbar navbar-default"> -->
     <div class="container">
       <div class="navbar-header">
@@ -18,9 +28,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../" style="padding: 13px">
-          <span class="glyphicon glyphicon-phone-alt"></span>
-          Contacts
+        <a class="navbar-brand" href="../" style="margin-top: -6px">
+          <img src="../static/images/logo.png">
         </a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -29,13 +38,13 @@
           <li><a href="../add">AddUser</a></li>
           <li><a href="../delete">DelUser</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px"><a href="../login" style="text-decoration:none;">Log in</a></button></li>
-          <li><button type="button" class="btn btn-success navbar-btn"><a href="../login" style="text-decoration:none">Sign up</a></button></li>
+        <ul class="nav navbar-nav navbar-right" style="margin-left:0px">
+          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px;width:70px"><a href="../login" style="text-decoration:none;">Log in</a></button></li>
+          <li><button type="button" class="btn btn-success navbar-btn" style="width:70px"><a href="../login" style="text-decoration:none">Sign up</a></button></li>
         </ul>
         <form class="navbar-form navbar-right">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search"></input>
+          <div class="input-group" style="width:167px">
+            <input type="text" class="form-control" placeholder="Name"></input>
             <span class="input-group-btn">
               <button type="button" class="btn btn-info">Search</button>
             </span>
@@ -48,19 +57,20 @@
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
-          <tr>
+          <tr style="color: #AAC7E4">
             <th width="10%">姓名</th>
-            <th width="25%"><span  style="margin-left:75px">电话</span></th>
-            <th width="40%">地址</th>
+            <th width="30%"><span  style="margin-left:88px">电话</span></th>
+            <th width="35%">地址</th>
             <th>更新日期</th>
           </tr>
         </thead>
         <tbody>
           {% for each in messageuser %}
             <tr>
-              <td><a href="{{ each.pk }}/detail">{{ each.Name }}</a></td>
+              <!-- <td><a href="{{ each.pk }}/detail">{{ each.Name }}</a></td> -->
+              <td><a style="color: white" class="UserName" name="{{ each.pk }}" href="#" data-toggle="modal" data-target="#myModal">{{ each.Name }}</a></td>
               <td>
-                <select id="select_{{ each.id }}" style="width: 65px;margin: -5px 2px -5px;border-radius: 2px;border: 1px solid #cccccc;padding: 4px 6px;">
+                <select id="select_{{ each.id }}" style="width: 80px;margin: -5px 2px -5px;border-radius: 2px;border: 1px solid #cccccc;padding: 4px 6px;">
                   {% if Label|get:each.id|length_is:"1" %}  <!--若电话标签个数为1-->
                     <option value="{{ Label|get:each.id|first }}_{{ each.id }}">
                       {{ Label|get:each.id|first }}     <!--第一个电话标签-->
@@ -79,7 +89,7 @@
 
                 {% if Label|get:each.id|length_is:"1" %} <!--若电话标签个数为1-->
                   {% for label in Label|get:each.id %} 
-                    <a href="tel:{{ PhoneNum|get:each.id|get:label }}">
+                    <a style="color: white" href="tel:{{ PhoneNum|get:each.id|get:label }}">
                       <span id="{{ label }}_{{ each.id }}">
                         {{ PhoneNum|get:each.id|get:label }}
                       </span>
@@ -87,14 +97,14 @@
                   {% endfor %}
                 {% else %}
                   {% for label in Label|get:each.id|slice:":1" %}
-                    <a href="tel:{{ PhoneNum|get:each.id|get:label }}">
+                    <a style="color: white" href="tel:{{ PhoneNum|get:each.id|get:label }}">
                       <span id="{{ label }}_{{ each.id }}">
                         {{ PhoneNum|get:each.id|get:label }}
                       </span>
                     </a>
                   {% endfor %}
                   {% for label in Label|get:each.id|slice:"1:" %}
-                    <a href="tel:{{ PhoneNum|get:each.id|get:label }}">
+                    <a style="color: white" href="tel:{{ PhoneNum|get:each.id|get:label }}">
                       <span id="{{ label }}_{{ each.id }}" style="display: none">
                         {{ PhoneNum|get:each.id|get:label }}
                       </span>
@@ -102,19 +112,52 @@
                   {% endfor %}
                 {% endif %}  
               </td>
-              <td>{{ each.Address }}</td>
-              <td>{{ each.UpdateTime|date:"Y-m-d H:i:s" }}</td>
+              <td style="color: white">{{ each.Address }}</td>
+              <td style="color: white">{{ each.UpdateTime|date:"Y-m-d H:i:s" }}</td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <span style="position:relative;">
+            <img src="../static/images/card.jpg" style="width: 100%;">
+          </span>
+          <span style="position:absolute; top:5px; right:10px">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          </span>
+          <span id="name" style="position:absolute; top:45%; left:43%;">
+            <p style="font-size: 26px"><strong></strong></p>
+          </span>
+          <span id="phone" style="position:absolute; top:81%; left:20%;">
+            <p></p>
+          </span>
+          <span id="address" style="position:absolute; top:67%; left:63%;">
+            <p><strong></strong></p>
+          </span>
+          <span id="webaddress" style="position:absolute; top:81%; left:63%;">
+            <p><strong>www.haomyun.com</strong></p>
+          </span>
+          <span id="email" style="position:absolute; top:67%; left:20%;">
+            <p><strong>xxxxx.@xx.com</strong></p>
+          </span>
+          <span id="edit" style="position:absolute; top:0; left:0;">
+            <a class="btn" href="www.baidu.com">编辑</a>
+          </span>
+          <div id="headpicture" style="width: 116px;height: 116px;position:absolute;top:7%; left:39%; border-radius: 100px;">
+          </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 <script type="text/javascript">
-$(document).ready(function()
-{
+$(document).ready(function(){
   {% for each in messageuser %}
     $("#select_{{ each.id }}").change(function()
     {
@@ -131,6 +174,22 @@ $(document).ready(function()
       {% endfor %}
     });
   {% endfor %}
+
+  $(".UserName").on('click',function(){
+    $("#phone p").text("");
+    var oTr=$(this).parent().parent();
+    var name=$(this).text();
+    var labels=$(oTr).children(":eq(1)").children("select").children("option");
+    var phones=$(oTr).children(":eq(1)").children("a");
+    var address=$(oTr).children(":eq(-2)").text();
+    $("#name strong").text(name);
+    $("#address strong").text(address);
+    for(var i=0;i<labels.length;i++){
+      var phonelabel=$("#phone p").html();
+      $("#phone p").html(phonelabel+"<strong>"+$(labels[i]).text()+" "+$(phones[i]).text()+"</strong><br/>");
+    };
+    $("#edit a").attr("href",$(this).attr("name")+"/detail");
+  })
 });  
 </script>
 

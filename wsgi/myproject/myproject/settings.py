@@ -30,7 +30,7 @@ SECRET_KEY = SECRETS['secret_key']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG') == 'True'
 
-DEBUG = True
+# DEBUG = True
 
 from socket import gethostname
 ALLOWED_HOSTS = [
@@ -139,32 +139,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-###############服务器端#################
-# STATIC_URL = 'static/'
-# STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
-###############服务器端#################
-
-# STATIC_URL = '/static/'
-
-# TEMPLATE_DIRS = [
-# os.path.join(BASE_DIR, 'templates'),
-# ]
-
-# STATIC_ROOT = os.path.join(BASE_DIR, '../static')
-
-# STATICFILES_DIRS = (
-#  os.path.join(BASE_DIR, 'static'),
-# )
-
-###############离线DEBUG#################
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
 
-STATICFILES_DIRS = (
-    ("css", os.path.join(STATIC_ROOT,'css')),
-    ("js", os.path.join(STATIC_ROOT,'js')),
-    ("images", os.path.join(STATIC_ROOT,'images')),
-)
+###############离线DEBUG#################
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
+
+# STATICFILES_DIRS = (
+#     ("css", os.path.join(STATIC_ROOT,'css')),
+#     ("js", os.path.join(STATIC_ROOT,'js')),
+#     ("images", os.path.join(STATIC_ROOT,'images')),
+# )
 ###############离线DEBUG#################
 #*****************离线DEBUG****两个都可以**************
 # STATIC_URL = '/static/'

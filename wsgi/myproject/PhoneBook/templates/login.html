@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contacts</title>
+  <title>Cloud Phone</title>
   <link rel="stylesheet" href="/static/css/bootstrap.css">  
-  <script src="/static/js/jquery-3.0.0.js"></script>
-  <script src="/static/js/bootstrap.js"></script>
+  <script src="/static/js/jquery-3.0.0.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
   <link rel="shortcut icon" href="/static/images/haomyun.ico" />
 </head>
-<body style="background:url(/static/images/001.jpg) no-repeat fixed center;background-size: cover;">
+<body style="background:url(/static/images/013.jpg) no-repeat fixed center;background-size: cover;width:auto">
   <nav class="navbar navbar-default">  <!-- <nav class="navbar navbar-default"> -->
     <div class="container">
       <div class="navbar-header">
@@ -18,9 +18,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../" style="padding: 13px">
-          <span class="glyphicon glyphicon-phone-alt"></span>
-          Contacts
+        <a class="navbar-brand" href="../" style="margin-top: -6px">
+          <img src="../static/images/logo.png">
         </a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -29,13 +28,13 @@
           <li><a href="../add">AddUser</a></li>
           <li><a href="../delete">DelUser</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px"><a href="" style="text-decoration:none">Log in</a></button></li>
-          <li><button type="button" class="btn btn-success navbar-btn"><a href="" style="text-decoration:none">Sign up</a></button></li>
+        <ul class="nav navbar-nav navbar-right" style="margin-left:0px">
+          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px;width:70px"><a href="" style="text-decoration:none">Log in</a></button></li>
+          <li><button type="button" class="btn btn-success navbar-btn" style="width:70px"><a href="" style="text-decoration:none">Sign up</a></button></li>
         </ul>
         <form class="navbar-form navbar-right">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search"></input>
+          <div class="input-group" style="width:167px">
+            <input type="text" class="form-control" placeholder="Name"></input>
             <span class="input-group-btn">
               <button type="button" class="btn btn-info">Search</button>
             </span>
@@ -44,11 +43,11 @@
       </div>
     </div>
   </nav>
-  <div class="col-md-offset-4">
-    <h1>敬请期待...~~O(∩_∩)O~~</h1>
+  <div style="margin-left: 30%">
+    <h1>敬请期待...O(∩_∩)O</h1>
   </div>
   <div class="container">
-    <form class="form-horizontal" style="margin-top: 110px">
+    <form class="form-horizontal">
       <div class="form-group">
         <label for="inputUser" class="col-sm-1 control-label sr-only">用户名</label>
         <div class="col-sm-3">
@@ -64,7 +63,7 @@
       <div class="form-group">
         <div class="col-sm-offset-1 col-sm-10">
           <div class="checkbox">
-            <label>
+            <label style="color: white">
               <input type="checkbox"> Remember me
             </label>
           </div>
