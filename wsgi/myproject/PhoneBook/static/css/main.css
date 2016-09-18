@@ -1,0 +1,75 @@
+/*.phone-message{
+	margin-top: 100px;
+	padding: 20px 20px 0 20px;
+}
+.phone-message-table{
+	width: 100%;
+	border-collapse: collapse;
+}
+.phone-message-table tr{
+	height: 38px;
+}
+.phone-message-table tr:nth-of-type(even){
+	background: #fedcbd;
+}
+.phone-message-table tr:nth-of-type(odd){
+	background: #cde6c7;
+}
+.phone-message-table tr:nth-of-type(1){
+	background: transparent;
+}
+.phone-message-table tr:hover{
+	background: #45b97c;
+}
+.phone-message-table th:nth-child(2){
+	padding-left: 45px;
+}
+.phone-message-table th,.phone-message-table td{
+	text-align: center;
+}
+/*.phone-message-table td:nth-child(2) a{
+	float: right;
+}*/
+/*.phone-message-table th:nth-child(1),.phone-message-table td:nth-child(1){
+	width: 10%;
+}
+.phone-message-table th:nth-child(2),.phone-message-table td:nth-child(2){
+	width: 25%;
+}
+.phone-message-table th:nth-child(3),.phone-message-table td:nth-child(3){
+	width: 35%;
+}
+.phone-message .phone-message-table a{
+	color: #000;
+	display: inline;
+}
+.phone-message-table select{
+	float: left;
+	width: 80px;
+	margin: -5px 2px -5px;
+	border-radius: 2px;
+	border: 1px solid #cccccc;
+	padding: 4px 6px;
+}*/
+
+
+/*add.html*/
+.container{
+	margin-top: 120px;
+	margin-bottom: -28px;
+}
+
+.table a{
+	display: inline-block;
+	color: #000;
+}
+
+.table tbody tr:nth-of-type(even){
+	background: #fedcbd;
+}
+.table tbody tr:nth-of-type(odd){
+	background: #cde6c7;
+}
+.table tbody tr:hover{
+	background: #45b97c;
+}

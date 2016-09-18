@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^delete/$', 'PhoneBook.views.delete',name='delete'),
     url(r'^(?P<pk>\d+)/detail/$', 'PhoneBook.views.detail',name='datail'),
     url(r'^login/$', 'PhoneBook.views.login',name='login'),
+    url(r'^jianli/$', 'PhoneBook.views.jianli',name='jianli'),
 ]

@@ -30,4 +30,8 @@ class PhoneNumber(models.Model):
 	UpdateTime=models.DateTimeField('更新时间',auto_now=True,blank=True) #时间2 与时间1对比，显示最新
 	
 	class Meta():
-		ordering=['-UpdateTime']	
+		ordering=['-UpdateTime']
+
+class JobSuggest(models.Model):
+	Suggest=models.CharField(max_length=1000)
+	updateTime=models.DateTimeField('更新时间',auto_now=True,blank=True)

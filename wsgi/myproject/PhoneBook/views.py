@@ -1,29 +1,38 @@
 from django.shortcuts import render,render_to_response
 from django.http import HttpResponse
-from PhoneBook.models import MessageUser,PhoneNumber
+from PhoneBook.models import MessageUser,PhoneNumber,JobSuggest
 from .form import AddForm,LoginForm,UpdateForm
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.template.context import RequestContext
 from django.template.defaulttags import register
-import re,json
+import re,json,time
 
 @register.filter
 def get(d, key_name):
 	return d.get(key_name,'')
 
 def index(request):
-	return render(request,"index.html")
+	return render(request,'index.html')
 
-def ajax(request):
+def jianli(request):
+	allSuggest=JobSuggest.objects.all()
+	allSuggest=allSuggest[::-1]
 	if request.method=="POST":
-		print("it's a test")
-		print(request.POST['Begin'])
-		print(request.POST['End'])
-		return HttpResponse("表单测试成功")
+		if request.POST['submitName']=='cancel':
+			jobSuggest=JobSuggest.objects.filter(Suggest=request.POST['suggest'])
+			jobSuggest.delete()
+			return HttpResponse('删除成功！')
+		else:
+			Suggest=request.POST['JobSuggest']
+			length=len(Suggest)
+			if length>0:
+				jobSuggest=JobSuggest.objects.create(Suggest=Suggest)
+				return HttpResponse('感谢您的建议！')
+			else:
+				return HttpResponse('请输入您的宝贵建议，谢谢！')
 	else:
-		return render(request,'testajax.html')
-	# return HttpResponse("表单测试成功")
+		return render(request, 'jianli.html',{'allSuggest':allSuggest})
 
 # Create your views here.
 def phone(request):  #通讯录首页
@@ -86,7 +95,6 @@ def add(request):
 			Errors['nameError1']=nameError1
 		if MessageUser.objects.filter(Name=Name):
 			Errors['nameError2']=nameError2
-		print(Errors)
 		############判断表单数据############
 		if len(Errors)==0: #没有error  创建uesr
 			# new_user=MessageUser.objects.get_or_create(Name=Name,Address=Address,Other=Other) #若不存在就创建

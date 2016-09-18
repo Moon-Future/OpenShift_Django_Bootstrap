@@ -1,155 +1,105 @@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cloud Phone</title>
-  <link rel="stylesheet" href="/static/css/bootstrap.css">
-  <link rel="stylesheet" href="/static/css/mycss.css">
-  <script src="/static/js/jquery-3.0.0.min.js"></script>
-  <script src="/static/js/bootstrap.min.js"></script>
-  <script src="/static/js/index.js"></script>
-  <link rel="shortcut icon" href="/static/images/haomyun.ico" />
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() 
-    {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?4cb23102858baa64d68ddf7ee6a00f8c";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cloud Phone</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script src="/static/js/jquery-3.0.0.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <link rel="shortcut icon" href="/static/images/haomyun.ico" />
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function(){
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?4cb23102858baa64d68ddf7ee6a00f8c";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <body>
-  <nav class="navbar navbar-default" style="position: fixed;margin: auto;left: 0;right: 0;z-index:100">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="" style="margin-top: -6px">
-          <!-- <span class="glyphicon glyphicon-phone-alt"></span> -->
-          <!-- Contacts -->
-          <img src="../static/images/logo.png">
-        </a>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="phonenum">PhoneNum</a></li>
-          <li><a href="add">AddUser</a></li>
-          <li><a href="delete">DelUser</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right" style="margin-left:0px">
-          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px;width:70px"><a href="../login" style="text-decoration:none">Log in</a></button></li>
-          <li><button type="button" class="btn btn-success navbar-btn" style="width:70px"><a href="../login" style="text-decoration:none">Sign up</a></button></li>
-        </ul>
-        <form class="navbar-form navbar-right">
-          <div class="input-group" style="width:167px">
-            <input type="text" class="form-control" placeholder="Name"></input>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-info">Search</button>
-            </span>
-          </div>
-        </form>
-      </div>
+    {% include 'header.html' %}
+    <div class="index-banner">
+        <div class="index-banner-bg">
+            <img src="../static/images/bg.jpg" alt="banner">
+        </div>
+        <div class="index-banner-text public-container">
+            <div class="index-banner-title">
+                <h1>Everything For This</h1>
+            </div>
+            <div class="index-banner-txt">
+                <p><span class="line"></span>just for your convenience<span class="line"></span></p>
+            </div>
+        </div>
     </div>
-  </nav>
-  <div class="bgPic">
-    <div class="b1 block now winw winh">
-      <div class="bgimg winw winh">
-        <img class="winw winh" src="../static/images/bg1.jpg">
-      </div>
-      <div class="phone1">
-        <img src="../static/images/a_1.gif">
-      </div>
-      <div class="phone2">
-        <img src="../static/images/a_2.gif">
-      </div>
-      <div class="phone3">
-        <img src="../static/images/a_3.gif">
-      </div>
-      <h3 class="animate">电话这么多<br />不知道拨哪个？</h3>
+    <div class="index-content clearfloat">
+        <div class="index-content-tips"><a href="jianli" style="color: #fff">简历入口</a></div>
+        <div class="public-container index-content-list clearfloat">
+            <div class="pic clearfloat">
+                <a href="">
+                    <div class="float">
+                        <img src="../static/images/pic1.png" alt="">
+                    </div>
+                    <div class="pic-text float">
+                        <div class="pic-text-title float">
+                            <h3>统一的企业通讯录</h3>
+                        </div>
+                        <div class="pic-text-txt">
+                            <p>企业通讯录可快捷导入，统一管理同事信息准确完善，方便查找</p>
+                        </div>
+                    </div>
+                    <div class=hidden-text>
+                        <div class="hidden-text-txt">
+                            <h1>便捷</h1>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="pic clearfloat">
+                <a href="">
+                    <div class="float">
+                        <img src="../static/images/pic2.png" alt="">
+                    </div>
+                    <div class="pic-text float">
+                        <div class="pic-text-title float">
+                            <h3>贴合办公场景的沟通方式</h3>
+                        </div>
+                        <div class="pic-text-txt">
+                            <p>集成电话与邮件，多样沟通，提高效率提供回执与提醒消息，贴合办公场景</p>
+                        </div>
+                    </div>
+                    <div class=hidden-text>
+                        <div class="hidden-text-txt">
+                            <h1>效率</h1>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="pic clearfloat">
+                <a href="">
+                    <div class="float">
+                        <img src="../static/images/pic3.png" alt="">
+                    </div>
+                    <div class="pic-text float">
+                        <div class="pic-text-title float">
+                            <h3>可靠的安全保障</h3>
+                        </div>
+                        <div class="pic-text-txt">
+                            <p>协议全程加密，防止网络窃听多重数据安全保护机制，抵御网络攻击和入侵</p>
+                        </div>
+                    </div>
+                    <div class=hidden-text>
+                        <div class="hidden-text-txt">
+                            <h1>安全</h1>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="b2 block winw winh">
-      <div class="bgimg winw winh">
-        <img class="winw winh" src="../static/images/bg2.jpg">
-      </div>
-      <div class="pic1">
-        <img class="b_1" src="../static/images/b_1_1.gif">
-        <img style="display: none" class="b_1" src="../static/images/b_1_2.gif">
-        <img style="display: none" class="b_2" src="../static/images/b_2.gif">
-        <p></p>
-        <!-- <p>多啦a梦！我的手机又丢了，大家的电话号码都没了，怎么办啊！</p> -->
-      </div>
-      <div class="pic2">
-        <img class="b_3" src="../static/images/b_3_1.gif">
-        <img style="display: none" class="b_3" src="../static/images/b_3_2.gif">
-        <img style="display: none" class="b_4" src="../static/images/b_4.gif">
-        <p></p>
-        <!-- <p>大熊，你怎么呢？</p> -->
-      </div>
-      <div class="pic3">
-        <img style="display:none" class="b_5" src="../static/images/b_5.png">
-        <img style="display:none" class="b_6" src="../static/images/b_6.png">
-      </div>
-    </div>
-    <div class="b3 block winw winh">
-      <div class="bgimg winw winh">
-        <img class="winw winh" src="../static/images/bg3.jpg">
-      </div>
-      <div class="webShow">
-        <div class="picShow current">
-          <img src="../static/images/c_1.png">
-          <p>列表展示，一目了然</p>
-        </div>
-        <div class="picShow">
-          <img src="../static/images/c_2.png">
-          <p>名片show，清新大气</p>
-        </div>
-        <div class="picShow">
-          <img src="../static/images/c_3.png">
-          <p>增添删改，轻松自如</p>
-        </div>
-        <div class="picShow">
-          <img src="../static/images/c_4.gif">
-          <p>移动端自适应，点击呼叫</p>
-        </div>
-        <div class="liuxing">
-            <img class="img1" src="../static/images/starry.png" />
-        </div>
-        <div class="liuxing">
-            <img class="img2" src="../static/images/starry.png" />
-        </div>
-        <div class="liuxing">
-            <img class="img3" src="../static/images/starry.png" />
-        </div>
-        <div class="liuxing">
-            <img class="img4" src="../static/images/starry.png" />
-        </div>
-      </div>
-    </div>
-    <div class="b4 block winw winh">
-      <div class="bgimg winw winh">
-        <img class="winw winh" src="../static/images/bg4.jpg">
-      </div>
-      <div class="yun">
-        <img src="../static/images/yun.png">
-      </div>
-      <div class="piao_yun1">
-        <img src="../static/images/piao_yun1.png" />
-      </div>
-      <div class="piao_yun2">
-        <img src="../static/images/piao_yun2.png" />
-      </div>
-      <div class="join">
-        <a href="phonenum"><img src="../static/images/join.png" /></a>
-      </div>
-    </div>
-  </div>
-  <div class="point"></div>
+    {% include 'footer.html' %}
 </body>
 </html>

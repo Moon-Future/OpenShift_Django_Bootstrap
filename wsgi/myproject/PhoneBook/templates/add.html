@@ -4,50 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cloud Phone</title>
-  <link rel="stylesheet" href="/static/css/bootstrap.css">  
+  <link rel="stylesheet" href="/static/css/common.css">
+  <link rel="stylesheet" href="/static/css/bootstrap.css">
+  <link rel="stylesheet" href="/static/css/reset.css">
+  <link rel="stylesheet" href="/static/css/main.css">
   <script src="/static/js/jquery-3.0.0.min.js"></script>
-  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/common.js"></script>
   <link rel="shortcut icon" href="/static/images/haomyun.ico" />
 </head>
-<body style="background:url(/static/images/013.jpg) no-repeat fixed center;background-size: cover;width:auto">
-  <nav class="navbar navbar-default">  <!-- <nav class="navbar navbar-default"> -->
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="../../" style="margin-top: -6px">
-          <img src="../static/images/logo.png">
-        </a>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="../phonenum">PhoneNum</a></li>
-          <li class="active"><a href="">AddUser</a></li>
-          <li><a href="../delete">DelUser</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right" style="margin-left:0px">
-          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px;width:70px"><a href="../login" style="text-decoration:none">Log in</a></button></li>
-          <li><button type="button" class="btn btn-success navbar-btn" style="width:70px"><a href="../login" style="text-decoration:none">Sign up</a></button></li>
-        </ul>
-        <form class="navbar-form navbar-right">
-          <div class="input-group" style="width:167px">
-            <input type="text" class="form-control" placeholder="Name"></input>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-info">Search</button>
-            </span>
-          </div>
-        </form>
-      </div>
-    </div>
-  </nav>
+<body>
+  {% include 'header.html' %}
   <div class="container">
     <form method="POST" id="fromMessage" class="form-horizontal" style="margin-top: 20px">
       {% csrf_token %}
       <div class="form-group">
-        <label for="username" class="col-sm-1 control-label" style="color:white">姓名</label>
+        <label for="username" class="col-sm-1 control-label">姓名</label>
         <span style="color:red" name="nameError">
           <!-- <strong>{{ addform.add_name.errors.as_text }}</strong> -->
           <strong></strong>
@@ -58,7 +29,7 @@
       </div>
       <span id="phonenum">
         <div class="form-group">
-          <label for="phonenum" class="col-sm-1 control-label" style="color:white">电话</label>
+          <label for="phonenum" class="col-sm-1 control-label">电话</label>
           <span style="color:red" class="phoneError" name="0">
             <!-- <strong>{{ addform.add_phone.errors.as_text }}</strong> -->
             <strong></strong>
@@ -84,13 +55,13 @@
         </div>
       </span>
       <div class="form-group">
-        <label for="address" class="col-sm-1 control-label" style="color:white">地址</label>
+        <label for="address" class="col-sm-1 control-label">地址</label>
         <div class="col-sm-2" style="width: 500px;">
           {{ addform.add_address }}
         </div>
       </div>
       <div class="form-group">
-        <label for="other" class="col-sm-1 control-label" style="color:white">其它</label>
+        <label for="other" class="col-sm-1 control-label">其它</label>
         <div class="col-sm-2" style="width: 500px;" >
           {{ addform.add_other }}
         </div>
@@ -117,10 +88,12 @@
       </div>
     </form>
   </div>
+  {% include 'footer.html' %}
 </body>
+</html>
 
 <script type="text/javascript">
-  function go_back()
+function go_back()
 {
   //history.go(-1); //返回上一页
   window.location.href="../phonenum"
@@ -221,6 +194,7 @@ $('#fromMessage').submit(function(e){
     // data:{name:name,phones:phoneArr},
     data:data,
     success:function(arg){
+      alert(arg);
       if((typeof arg)=='object'){  //是否为字典对象，若是，则传递来时的error信息
         var len=$('input[name="add_phone"]').length;
         console.log(len);
@@ -262,4 +236,3 @@ $('#fromMessage').submit(function(e){
   });
 });  
 </script>
-</html>

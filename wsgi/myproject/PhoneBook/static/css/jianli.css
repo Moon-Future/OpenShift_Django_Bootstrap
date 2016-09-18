@@ -1,0 +1,222 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.jianli{
+    width: 100%;
+}
+.jianli > .info-message{
+    background: #595757;
+    width: 350px;
+    height: 1560px;
+    box-sizing: border-box;
+}
+.left{
+    float: left;
+}
+.head img{
+    padding: 50px 0 20px 97px;
+}
+.head h1,.head h3{
+    color: white;
+    text-align: center;
+}
+.message{
+    margin-top: 20px;
+    margin-bottom: 120px;
+    color: white;
+}
+.messageSkill{
+    margin-bottom: 0;
+    color: white;
+}
+.message1{
+    margin: -50px 0 0 70px;
+    float: left;
+}
+.message li,.messageSkill li{
+    margin-bottom: 10px;
+}
+.message2{
+    margin: -50px 0 0 150px;
+}
+.message2 a{
+    color: #fff !important;
+}
+.message2 a:hover{
+    text-decoration: underline;
+}
+ul{
+    list-style: none;
+}
+.skill{
+    position: relative;
+    top: -50px;
+    left: -10px;
+}
+#myCanvas10{
+    margin-left: 161px;
+}
+.detail-message{
+    float: left;
+    width: 40%;
+    margin-left: 35px;
+    padding-top: 50px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+.title{
+    height: 55px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #3f3b3a;
+}
+.title img,.title h2{
+    float: left;
+}
+.title h2{
+    margin-left: 20px;
+    line-height: 55px;
+}
+.content{
+    margin-top: 20px;
+}
+.work .content .job{
+    margin-bottom: 10px;
+}
+.work .content .job h4:first-child{
+    display: inline;
+}
+.work .content .job p:first-child{
+    display: inline;
+    color: blue;
+    margin-left: 26px;
+}
+.introduce,.work,.mySkill{
+    margin-bottom: 65px;
+}
+.content > .left:first-child > p{
+    color: blue;
+    font-weight: bold;
+    margin-right: 50px;
+}
+.content p{
+    margin-top: 10px;
+}
+.floatfix:after{
+    content:"";
+    display:table;
+    clear:both;
+}
+.floatfix{
+    *zoom:1;
+}
+.text,.content{
+    /*width: 600px;*/
+    width: 100%;
+}
+.text strong{
+    color: blue;
+}
+a{
+    text-decoration: none;
+    /*margin-left: 10px;*/
+}
+a:link,a:visited{
+    color: blue;
+}
+a:hover,a:active{
+    color: green;
+}
+.pic{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 26%;
+}
+.pic img{
+    width: 100%;
+    box-sizing: border-box;
+}
+@media (max-width: 1147px){
+    .pic{
+        display: none;
+    }
+    .detail-message{
+        width: 50%;
+        overflow: auto;
+    }
+}
+@media (max-width: 820px){
+    .info-message{
+        background: none!important;
+        margin-bottom: -250px;
+    }
+    .info-message p,.info-message h1,.info-message h3,.info-message h4{
+        color: #000;
+    }
+    .info-message .message{
+        margin-bottom: 60px;
+    }
+    .detail-message{
+        width: 90%;
+        overflow: auto;
+        margin-left: 20px;
+    }
+}
+
+.suggest{
+    margin-top: 50px;
+    margin-left: 20px;
+    /*height: 100px;*/
+    width: 70%;
+    /*border: 1px solid red;*/
+}
+.suggest h3{
+    margin-bottom: 20px;
+}
+.suggest textarea{
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+    font-size: 1.5em;
+    font-family: "微软雅黑";
+}
+.suggest .btn{
+    margin: 20px 0;
+}
+.suggest .btn button,.suggest .btn input{
+    /*display: inline-block;*/
+    padding: 8px 20px;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+.suggest .btn input{
+    background: #5cb85c;
+    border: #4cae4c;
+}
+.suggest .btn button{
+    background: #d9534f;
+    border: #d43f3a;
+}
+
+.showSuggest{
+    width: 50%;
+    margin: 20px;
+    padding: 10px;
+    border: 1px dotted red;
+}
+.showSuggest .timeRight{
+    float: right;
+    margin-top: 10px;
+}
+.showSuggest .timeRight .time{
+    margin-right: 20px;
+}
+/*.hiddenSuggest{
+    display: none;
+}*/
+.hiddenSuggest input{
+    display: none;
+}

@@ -4,14 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cloud Phone</title>
-  <link rel="stylesheet" href="/static/css/bootstrap.css">  
+  <link rel="stylesheet" href="/static/css/common.css">
+  <link rel="stylesheet" href="/static/css/bootstrap.css">
+  <link rel="stylesheet" href="/static/css/reset.css">
+  <link rel="stylesheet" href="/static/css/main.css">
   <script src="/static/js/jquery-3.0.0.min.js"></script>
   <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/common.js"></script>
   <link rel="shortcut icon" href="/static/images/haomyun.ico" />
   <script type="text/javascript">
     var _hmt = _hmt || [];
-    (function() 
-    {
+    (function(){
       var hm = document.createElement("script");
       hm.src = "//hm.baidu.com/hm.js?4cb23102858baa64d68ddf7ee6a00f8c";
       var s = document.getElementsByTagName("script")[0]; 
@@ -19,45 +22,13 @@
     })();
   </script>
 </head>
-<body style="background:url(/static/images/013.jpg) no-repeat fixed center;background-size: cover;width:auto">
-  <nav class="navbar navbar-default">  <!-- <nav class="navbar navbar-default"> -->
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="../" style="margin-top: -6px">
-          <img src="../static/images/logo.png">
-        </a>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="">PhoneNum</a></li>
-          <li><a href="../add">AddUser</a></li>
-          <li><a href="../delete">DelUser</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right" style="margin-left:0px">
-          <li><button type="button" class="btn btn-default navbar-btn" style="margin-right: 10px;width:70px"><a href="../login" style="text-decoration:none;">Log in</a></button></li>
-          <li><button type="button" class="btn btn-success navbar-btn" style="width:70px"><a href="../login" style="text-decoration:none">Sign up</a></button></li>
-        </ul>
-        <form class="navbar-form navbar-right">
-          <div class="input-group" style="width:167px">
-            <input type="text" class="form-control" placeholder="Name"></input>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-info">Search</button>
-            </span>
-          </div>
-        </form>
-      </div>
-    </div>
-  </nav>
+<body>
+  {% include 'header.html' %}
   <div class="container">
     <div class="table-responsive">
       <table class="table table-hover">
         <thead>
-          <tr style="color: #AAC7E4">
+          <tr>
             <th width="10%">姓名</th>
             <th width="30%"><span  style="margin-left:88px">电话</span></th>
             <th width="35%">地址</th>
@@ -68,7 +39,7 @@
           {% for each in messageuser %}
             <tr>
               <!-- <td><a href="{{ each.pk }}/detail">{{ each.Name }}</a></td> -->
-              <td><a style="color: white" class="UserName" name="{{ each.pk }}" href="#" data-toggle="modal" data-target="#myModal">{{ each.Name }}</a></td>
+              <td><a class="UserName" name="{{ each.pk }}" href="#" data-toggle="modal" data-target="#myModal">{{ each.Name }}</a></td>
               <td>
                 <select id="select_{{ each.id }}" style="width: 80px;margin: -5px 2px -5px;border-radius: 2px;border: 1px solid #cccccc;padding: 4px 6px;">
                   {% if Label|get:each.id|length_is:"1" %}  <!--若电话标签个数为1-->
@@ -89,7 +60,7 @@
 
                 {% if Label|get:each.id|length_is:"1" %} <!--若电话标签个数为1-->
                   {% for label in Label|get:each.id %} 
-                    <a style="color: white" href="tel:{{ PhoneNum|get:each.id|get:label }}">
+                    <a href="tel:{{ PhoneNum|get:each.id|get:label }}">
                       <span id="{{ label }}_{{ each.id }}">
                         {{ PhoneNum|get:each.id|get:label }}
                       </span>
@@ -97,14 +68,14 @@
                   {% endfor %}
                 {% else %}
                   {% for label in Label|get:each.id|slice:":1" %}
-                    <a style="color: white" href="tel:{{ PhoneNum|get:each.id|get:label }}">
+                    <a href="tel:{{ PhoneNum|get:each.id|get:label }}">
                       <span id="{{ label }}_{{ each.id }}">
                         {{ PhoneNum|get:each.id|get:label }}
                       </span>
                     </a>
                   {% endfor %}
                   {% for label in Label|get:each.id|slice:"1:" %}
-                    <a style="color: white" href="tel:{{ PhoneNum|get:each.id|get:label }}">
+                    <a href="tel:{{ PhoneNum|get:each.id|get:label }}">
                       <span id="{{ label }}_{{ each.id }}" style="display: none">
                         {{ PhoneNum|get:each.id|get:label }}
                       </span>
@@ -112,8 +83,8 @@
                   {% endfor %}
                 {% endif %}  
               </td>
-              <td style="color: white">{{ each.Address }}</td>
-              <td style="color: white">{{ each.UpdateTime|date:"Y-m-d H:i:s" }}</td>
+              <td>{{ each.Address }}</td>
+              <td>{{ each.UpdateTime|date:"Y-m-d H:i:s" }}</td>
             </tr>
           {% endfor %}
         </tbody>
@@ -154,6 +125,7 @@
       </div>
     </div>
   </div>
+  {% include 'footer.html' %}
 </body>
 
 <script type="text/javascript">
